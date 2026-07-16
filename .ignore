@@ -1,0 +1,13 @@
+*
+
+!*/
+
+!.gitignore
+!.gitattributes
+
+!.editorconfig
+!.ignore
+
+!*.gd
+!*.tres
+
