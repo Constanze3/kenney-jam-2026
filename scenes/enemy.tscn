@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b5uwl2dp48qjo"]
+
+[ext_resource type="PackedScene" uid="uid://2khjb6151hp2" path="res://assets/cube_pets/animal-beaver.glb" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://cbmnohyuxaugi" path="res://scripts/enemy.gd" id="1_md0e3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pq12f"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=138548116]
+script = ExtResource("1_md0e3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1250081614]
+shape = SubResource("BoxShape3D_pq12f")
+
+[node name="Beaver" parent="." unique_id=1666300621 instance=ExtResource("1_7p1mj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65160805, 0)
