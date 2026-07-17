@@ -7,18 +7,25 @@ const JUMP_VELOCITY = 4.5
 @export var face_area : Area3D
 @export var should_jump : bool
 @export var jump_force : float
+@export var climbing : bool
+@export var climbing_velocity : float
 
 func _ready() -> void:
 	face_area.body_entered.connect(on_body_entered)
+	face_area.body_exited.connect(on_body_exited)
 func _physics_process(delta: float) -> void:
+	
 	# Add the gravity.	
-	if not is_on_floor():
+	if not is_on_floor() and not climbing:
 		velocity += get_gravity() * delta
-	if should_jump and is_on_floor():
+	
+	if should_jump and is_on_floor() and not climbing:
 		velocity += Vector3.UP * jump_force
-		should_jump = false
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+		should_jump = false 
+	
+	if climbing:
+		climb()
+	
 	var direction := (Vector3(0,30,0) - position).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -31,10 +38,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func climb() -> void:
-	return
+	velocity.y = climbing_velocity
+
 func on_body_entered(body: Node3D) -> void:
 	if body is Enemy and body.name != name:
 		should_jump = true
 	if body == Constants.game_manager.tower:
-		print("TOWER")
+		climbing = true	
 		return
+
+func on_body_exited(body: Node3D) -> void:
+	if body == Constants.game_manager.tower:
+		climbing = false
+	return
