@@ -4,10 +4,11 @@ extends Node
 var angle : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	return
-	# Called every frame. 'delta' is the elapsed time since the previous frame.
+	for i in 40:
+		_spawn_enemy()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_spawn_enemy()
+	pass
 
 func _spawn_enemy() -> void:
 	var new_enemy := enemy_scene.instantiate() as Node3D
