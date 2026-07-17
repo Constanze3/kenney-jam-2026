@@ -1,11 +1,25 @@
 [gd_scene format=3 uid="uid://btjqvglew5lo4"]
 
 [ext_resource type="PackedScene" uid="uid://maen18bhyk43" path="res://scenes/player.tscn" id="1_g7g4h"]
+[ext_resource type="PackedScene" uid="uid://dxt3y0krvxxth" path="res://assets/guns/blaster-g.glb" id="2_j8ivh"]
+[ext_resource type="Script" uid="uid://d2wh6sfkj4ou0" path="res://scripts/turret.gd" id="3_7ddre"]
+[ext_resource type="PackedScene" uid="uid://csfrbaubgqokb" path="res://assets/graveyard/cross-column.glb" id="3_nd71p"]
+[ext_resource type="PackedScene" uid="uid://y6ongt6x0lr4" path="res://assets/graveyard/border-pillar.glb" id="4_3qnke"]
+[ext_resource type="PackedScene" uid="uid://b4tj543ps1ljv" path="res://assets/graveyard/character-zombie.glb" id="5_qjeyg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5oyu"]
 size = Vector3(2, 0.001, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vt8ps"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_72pfp"]
+
+[sub_resource type="Sky" id="Sky_g5dq4"]
+sky_material = SubResource("ProceduralSkyMaterial_72pfp")
+
+[sub_resource type="Environment" id="Environment_vt8ps"]
+background_mode = 2
+sky = SubResource("Sky_g5dq4")
 
 [node name="Node3D" type="Node3D" unique_id=1151740289]
 
@@ -21,3 +35,22 @@ mesh = SubResource("PlaneMesh_vt8ps")
 
 [node name="Player" parent="." unique_id=432607406 instance=ExtResource("1_g7g4h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0685859, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=833244069]
+environment = SubResource("Environment_vt8ps")
+
+[node name="cross-column2" parent="." unique_id=1778716703 instance=ExtResource("3_nd71p")]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, -2.4229803, 0.004999995, -0.3059523)
+
+[node name="TurretHead" type="Node3D" parent="." unique_id=1791739647 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4530554, 1.1183462, -0.3140899)
+script = ExtResource("3_7ddre")
+seconds_between_shots = 0.4
+target = NodePath("../character-zombie2")
+something = ExtResource("4_3qnke")
+
+[node name="blaster-g2" parent="TurretHead" unique_id=2116126992 instance=ExtResource("2_j8ivh")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.21853054)
+
+[node name="character-zombie2" parent="." unique_id=647265750 instance=ExtResource("5_qjeyg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.847132, 0.004999876, -3.8848016)

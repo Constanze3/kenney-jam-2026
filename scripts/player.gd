@@ -12,7 +12,6 @@ extends CharacterBody3D
 @export var pitch: float
 
 @export var direction: Vector2 = Vector2.ZERO
-@export var should_jump: bool = false
 
 func get_sensitivity() -> float:
 	return sensitivity * sensitivity_multiplier
