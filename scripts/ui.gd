@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 	
 	if selected != -1:
 		desc_bar.set_item_text(0, str(turret_data.data[selected]["damage"]))
-		desc_bar.set_item_text(1, str(snapped(1 / turret_data.data[selected]["fire_rate"] / 1, 0.1)))
+		desc_bar.set_item_text(1, str(snapped(1 / turret_data.data[selected]["seconds_between_shots"] / 1, 0.1)))
 		desc_bar.set_item_text(2, str(turret_data.data[selected]["max_range"]))
 		desc_bar.set_item_text(3, str((1 - turret_data.data[selected]["inaccuracy"]) * 100))
 		desc_bar.set_item_text(4, str(turret_data.data[selected]["bullet_speed"]))
