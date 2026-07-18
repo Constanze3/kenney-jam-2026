@@ -39,6 +39,17 @@ func _ready() -> void:
 	#Set up the hotbar prices when the game is getting started.
 	for i in 7:
 		hotbar.set_item_text(i, str(turret_data.data[i]["cost"]) + "$")
+	var stat_colors: Array[Color] = [
+
+		Color.RED,
+		Color.ORANGE,
+		Color.GREEN,
+		Color.CYAN,
+		Color.YELLOW
+	]
+	for i in stat_colors.size():
+		desc_bar.set_item_icon_modulate(i, stat_colors[i])
+		desc_bar.set_item_custom_fg_color(i, stat_colors[i])
 
 func change_sensitivity(value: float) -> void:
 	player.sensitivity = value
@@ -92,7 +103,7 @@ func select_slot(index: int) -> void:
 		desc_bar.set_item_text(2, str(d["max_range"]))
 		desc_bar.set_item_text(3, str((1 - d["inaccuracy"]) * 100))
 		desc_bar.set_item_text(4, str(d["bullet_speed"]))
-
+		
 		var selected_turret_name: String = d["name"]
 		build_mode.set_turret_to_place(selected_turret_name)
 	else:
