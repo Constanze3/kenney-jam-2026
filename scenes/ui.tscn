@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dxrpljpll2dx7" path="res://assets/cursor_tile/tile_0078.png" id="7_qsv74"]
 
 [sub_resource type="SystemFont" id="SystemFont_6rmj2"]
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_cgfq5"]
 font_italic = true
@@ -53,7 +54,7 @@ scale = Vector2(0.99865264, 1)
 script = ExtResource("1_nt7q6")
 turret_data = ExtResource("2_8dubc")
 hotbar = NodePath("Hotbar")
-desc_bar = NodePath("Description")
+desc_bar = NodePath("Hotbar/Description")
 continue_game_button = NodePath("CanvasLayer/Menu/Button")
 pause_menu_layer = NodePath("CanvasLayer")
 sensitivity_slider = NodePath("CanvasLayer/Menu/SensSlider")
@@ -86,6 +87,7 @@ grow_vertical = 2
 theme_override_fonts/font = SubResource("SystemFont_6rmj2")
 
 [node name="Hotbar" type="ItemList" parent="." unique_id=863928529]
+clip_contents = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -114,6 +116,25 @@ item_3/icon = SubResource("CompressedTexture2D_vsj0x")
 item_4/icon = SubResource("CompressedTexture2D_qsv74")
 item_5/icon = SubResource("CompressedTexture2D_h1mc3")
 item_6/icon = SubResource("CompressedTexture2D_cof4p")
+
+[node name="Description" type="ItemList" parent="Hotbar" unique_id=1927184316]
+z_index = -3
+layout_mode = 1
+offset_right = 178.00009
+offset_bottom = 42.0
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_cgfq5")
+auto_width = true
+auto_height = true
+item_count = 5
+max_columns = 7
+icon_mode = 0
+fixed_icon_size = Vector2i(30, 30)
+item_0/icon = ExtResource("3_p7vwb")
+item_1/icon = ExtResource("4_vdcm2")
+item_2/icon = ExtResource("5_6rmj2")
+item_3/icon = ExtResource("6_vsj0x")
+item_4/icon = ExtResource("7_qsv74")
 
 [node name="BackgroundHotBar" type="ItemList" parent="Hotbar" unique_id=2020233917]
 z_index = -1
@@ -144,27 +165,6 @@ item_3/icon = ExtResource("3_8dubc")
 item_4/icon = ExtResource("4_p7vwb")
 item_5/icon = ExtResource("4_p7vwb")
 item_6/icon = ExtResource("5_ktti3")
-
-[node name="Description" type="ItemList" parent="." unique_id=1927184316]
-z_index = -3
-layout_mode = 0
-offset_left = 529.71375
-offset_top = 837.0
-offset_right = 707.71375
-offset_bottom = 879.0
-size_flags_vertical = 8
-theme_override_fonts/font = SubResource("SystemFont_cgfq5")
-auto_width = true
-auto_height = true
-item_count = 5
-max_columns = 7
-icon_mode = 0
-fixed_icon_size = Vector2i(30, 30)
-item_0/icon = ExtResource("3_p7vwb")
-item_1/icon = ExtResource("4_vdcm2")
-item_2/icon = ExtResource("5_6rmj2")
-item_3/icon = ExtResource("6_vsj0x")
-item_4/icon = ExtResource("7_qsv74")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1929879615]
 visible = false

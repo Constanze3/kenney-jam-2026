@@ -21,6 +21,7 @@ var build_mode: BuildMode
 var selected = -1
 var game_paused = false
 
+var desc_tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -31,6 +32,7 @@ func _ready() -> void:
 	
 	sensitivity_slider.value = player.sensitivity
 	sensitivity_slider.value_changed.connect(change_sensitivity)
+	sens_label.text = "Sensitivity: " + str(player.sensitivity)
 
 	build_mode = Constants.game_manager.player.build_mode
 
@@ -66,7 +68,7 @@ func _process(_delta: float) -> void:
 
 	if game_paused:
 		return
-	
+	#I know this shouldnt be here, I am lazy
 	money_label.text = str(Constants.game_manager.bank)
 
 
@@ -99,24 +101,20 @@ func select_slot(index: int) -> void:
 	animate_description_bar()
 
 func animate_description_bar() -> void:
-	var closed_position = hotbar.global_position 
-	var open_position = hotbar.global_position - Vector2(0, desc_bar.size.y)
-
-	while true:
-		var delta = get_process_delta_time()
-		var weight = clamp(slide_speed * delta, 0.0, 1.0)
-		if selected != -1:
-			desc_bar.global_position = desc_bar.global_position.lerp(
-				open_position,
-				weight
-			)
-		else:
-			desc_bar.global_position = desc_bar.global_position.lerp(
-				closed_position,
-				weight
-			)
-
-		if weight == 1.0:
-			break
-		
-		await get_tree().process_frame
+	# Allow ItemList/Control layout to update after changing its text.
+	await get_tree().process_frame
+	var closed_position := hotbar.global_position
+	var open_position := closed_position - Vector2(0.0, desc_bar.size.y)
+	var target_position := open_position if selected != -1 else closed_position
+	# Stop the previous animation before starting another.
+	if desc_tween and desc_tween.is_valid():
+		desc_tween.kill()
+	desc_tween = create_tween()
+	desc_tween.set_trans(Tween.TRANS_QUAD)
+	desc_tween.set_ease(Tween.EASE_OUT)
+	desc_tween.tween_property(
+		desc_bar,
+		"global_position",
+		target_position,
+		0.2
+	)
