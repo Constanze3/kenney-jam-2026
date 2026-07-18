@@ -13,7 +13,14 @@ const JUMP_VELOCITY = 4.5
 func _ready() -> void:
 	face_area.body_entered.connect(on_body_entered)
 	face_area.body_exited.connect(on_body_exited)
+
 func _physics_process(delta: float) -> void:
+	if is_queued_for_deletion():
+		return
+	
+	var target := Vector3(0,position.y,0)
+	if position != target:
+		look_at(target) 
 	
 	# Add the gravity.	
 	if not is_on_floor() and not climbing:
@@ -30,7 +37,6 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		look_at(Vector3(0,position.y,0)) 
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c04ejqw8meqcd"]
+
+[ext_resource type="Script" uid="uid://d0ef37y50w8qq" path="res://scripts/food.gd" id="1_af40f"]
+[ext_resource type="PackedScene" uid="uid://dkc4r4rp1xthi" path="res://assets/food_kit/cake-birthday.glb" id="1_xven1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pq12f"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a08nb"]
+height = 0.27124023
+radius = 0.3149414
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xven1"]
+height = 0.50823975
+radius = 0.43554688
+
+[node name="Food" type="StaticBody3D" unique_id=1259411450 node_paths=PackedStringArray("eat_area", "cake")]
+physics_material_override = SubResource("PhysicsMaterial_pq12f")
+script = ExtResource("1_af40f")
+eat_area = NodePath("EatArea")
+cake = NodePath("cake-birthday")
+
+[node name="cake-birthday" parent="." unique_id=1278137075 instance=ExtResource("1_xven1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1606890551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12463379, 0)
+shape = SubResource("CylinderShape3D_a08nb")
+
+[node name="EatArea" type="Area3D" parent="." unique_id=1738760097]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EatArea" unique_id=1009755791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13461304, 0)
+shape = SubResource("CylinderShape3D_xven1")
