@@ -9,6 +9,7 @@ extends Node
 @export var tower_health : float
 
 @export_category("Enemy/Wave")
+@export var enemies: Array[Enemy] = []
 @export var wave_no : int
 @export var current_enemy_count : int
 @export var wave_enemy_count : int
@@ -18,11 +19,9 @@ extends Node
 
 var wave_ended: bool = false
 
-
 func _enter_tree() -> void:
 	Constants.game_manager = self
 	
-
 func _process(_delta: float) -> void:
 	if tower_health <= 0:
 		game_over()
@@ -73,6 +72,6 @@ func end_wave() -> void:
 func damage_tower(damage_amount : int) -> void:
 	tower_health = tower_health - damage_amount
 
-
 func game_over() -> void:
 	return
+

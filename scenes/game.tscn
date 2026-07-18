@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://maen18bhyk43" path="res://scenes/player.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://d26dikvntj27w" path="res://assets/castle_kit/Textures/colormap.png" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c04ejqw8meqcd" path="res://scenes/food.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="7_u5sy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -215,3 +216,15 @@ mesh = SubResource("ArrayMesh_303yn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mini Towers" unique_id=1936329598]
 shape = SubResource("BoxShape3D_a08nb")
+
+[node name="FoodBox" parent="." unique_id=1909826369 instance=ExtResource("6_p57ef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.578936, 0)
+
+[node name="Turret" parent="." unique_id=1007567348 instance=ExtResource("7_u5sy4")]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 3.4386878, 23.313988, 1.7507496)
+
+[node name="Turret2" parent="." unique_id=1575817502 instance=ExtResource("7_u5sy4")]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 5.0533533, 23.453495, -1.3275025)
+
+[node name="Turret3" parent="." unique_id=1337293494 instance=ExtResource("7_u5sy4")]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, -0.45656204, 23.453495, 0.6719284)

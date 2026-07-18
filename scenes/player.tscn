@@ -17,3 +17,6 @@ current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1019651549]
 shape = SubResource("CapsuleShape3D_vt8ps")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1193535269]
+current = true

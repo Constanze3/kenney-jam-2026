@@ -18,11 +18,12 @@ extends CharacterBody3D
 @export var climbing : bool
 @export var should_jump : bool
 
+func _enter_tree() -> void:
+	Constants.game_manager.enemies.append(self)
 
 func _ready() -> void:
 	face_area.body_entered.connect(on_body_entered)
 	face_area.body_exited.connect(on_body_exited)
-
 
 #Sets the values from enemies.json
 func set_enemy_data(data : Dictionary) -> void:
@@ -48,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	var target := Vector3(0,position.y,0)
 	if position != target:
 		look_at(target) 
-	
+
 	# Add the gravity.	
 	if not is_on_floor() and not climbing:
 		velocity += get_gravity() * delta
@@ -75,12 +76,13 @@ func _physics_process(delta: float) -> void:
 func climb() -> void:
 	velocity.y = climbing_velocity
 
-
 #Used to keep track of the amount of current enemies left in GameManager
 func _exit_tree() -> void:
+	var index = Constants.game_manager.enemies.find(self)
+	Constants.game_manager.enemies.remove_at(index)
+
 	Constants.game_manager.current_enemy_count -= 1
 	Constants.game_manager.bank += money
-
 
 func on_body_entered(body: Node3D) -> void:
 	if body is Enemy and body.name != name:
@@ -89,8 +91,8 @@ func on_body_entered(body: Node3D) -> void:
 		climbing = true	
 		return
 
-
 func on_body_exited(body: Node3D) -> void:
 	if body == Constants.game_manager.tower:
 		climbing = false
 	return
+
