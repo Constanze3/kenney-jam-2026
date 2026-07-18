@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cmqb0pf6vk4oj" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dys6hlsx82si3" path="res://scripts/build_mode.gd" id="2_g2els"]
-
 [ext_resource type="PackedScene" uid="uid://daxr41b2wnlfg" path="res://scenes/ui.tscn" id="3_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8ps"]
@@ -14,7 +13,8 @@ sensitivity = 0.5
 movement_speed = 5.0
 jump_force = 3.0
 
-[node name="UI" parent="." unique_id=921849187 instance=ExtResource("3_qlg0r")]
+[node name="UI" parent="." unique_id=921849187 node_paths=PackedStringArray("player") instance=ExtResource("3_qlg0r")]
+player = NodePath("..")
 
 [node name="PlayerCamera" type="Camera3D" parent="." unique_id=1214775517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55117905, 0)

@@ -16,9 +16,7 @@ extends CharacterBody3D
 @export var direction: Vector2 = Vector2.ZERO
 
 
-
-var selected : int = -1
-
+var enabled : bool
 
 
 func get_sensitivity() -> float:
@@ -36,10 +34,16 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func set_enabled(setting: bool) -> void:
+	enabled = setting
+	set_process(setting)
+	set_physics_process(setting)
+	set_process_input(setting)
+	
 func _process(_delta: float) -> void:
-		direction = Input.get_vector("left", "right", "forward", "backward")
-		rotation.y = yaw
-		player_camera.rotation.x = pitch
+	direction = Input.get_vector("left", "right", "forward", "backward")
+	rotation.y = yaw
+	player_camera.rotation.x = pitch
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():

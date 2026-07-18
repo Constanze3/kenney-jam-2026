@@ -1,26 +1,72 @@
 extends Control
-
-@export var hotbar : ItemList
+signal set_enabled(setting: bool)
+@export var player : Player
 @export var turret_data : JSON
+@export var hotbar : ItemList
 @export var desc_bar : ItemList
 @export var slide_speed : float = 10.0
-@export var desc_offset : float = 10.0
+@export_category("Puase Menu")
+@export var continue_game_button : Button
+@export var pause_menu_layer : CanvasLayer
+@export var sensitivity_slider : HSlider
+@export var quit_game_button : Button
+@export var sens_label : Label
+@export var money_label : Label
 var open_position : Vector2
 var closed_position : Vector2
 var selected = -1
+var game_paused = false
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	await get_tree().process_frame
+	set_enabled.connect(player.set_enabled)
+	
+	continue_game_button.button_down.connect(continue_game)
+	quit_game_button.button_down.connect(quit_game)
+	
+	sensitivity_slider.value = player.sensitivity
+	sensitivity_slider.value_changed.connect(change_sensitivity)
+	sens_label.text = "Sensitivity: " + str(player.sensitivity)
+
 	#Set up the hotbar prices when the game is getting started.
 	for i in 7:
 		hotbar.set_item_text(i, str(turret_data.data[i]["cost"]) + "$")
+func change_sensitivity(value: float) -> void:
+	player.sensitivity = value
+	sens_label.text = "Sensitivity: " + str(value)
 
+func pause_game() -> void:
+	game_paused = true
+	set_enabled.emit(false)
+	get_tree().paused = true
+	pause_menu_layer.visible = true
+	return
+
+func continue_game() -> void:
+	game_paused = false
+	set_enabled.emit(true)
+	get_tree().paused = false
+	pause_menu_layer.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	return
+
+func quit_game() -> void:
+	get_tree().quit()
 
 func _process(delta: float) -> void:
-	closed_position = hotbar.global_position 
-	open_position = hotbar.global_position - Vector2(0,desc_bar.size.y + desc_offset)
+	
+	if Input.is_action_just_pressed("escape") and not game_paused:
+		pause_game()
 
+	closed_position = hotbar.global_position 
+	open_position = hotbar.global_position - Vector2(0,desc_bar.size.y)
+	if game_paused:
+		return
+	
+	money_label.text = str(Constants.game_manager.bank)
+	
 	if selected != -1:
 		desc_bar.global_position = desc_bar.global_position.lerp(
 			open_position,

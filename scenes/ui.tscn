@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://4dc8xj3venkp" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="JSON" path="res://data/turrets.json" id="2_8dubc"]
 [ext_resource type="Texture2D" uid="uid://cnrlsiqve05xm" path="res://assets/color_textures/green_texture.tres" id="2_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://76euprxn1wpj" path="res://assets/cursor_tile/resource_planks.png" id="3_6rmj2"]
 [ext_resource type="Texture2D" uid="uid://csdiimu6nenff" path="res://assets/color_textures/blue_texture.tres" id="3_8dubc"]
 [ext_resource type="Texture2D" uid="uid://c73geaq5xbjnv" path="res://assets/cursor_tile/tile_0106.png" id="3_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://bak7t5q2lfikk" path="res://assets/color_textures/orange_texture.tres" id="4_p7vwb"]
@@ -11,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bsolxvg30p5i0" path="res://assets/color_textures/red_texture.tres" id="5_ktti3"]
 [ext_resource type="Texture2D" uid="uid://b3ls8rfc5rkvj" path="res://assets/cursor_tile/tile_0055.png" id="6_vsj0x"]
 [ext_resource type="Texture2D" uid="uid://dxrpljpll2dx7" path="res://assets/cursor_tile/tile_0078.png" id="7_qsv74"]
+
+[sub_resource type="SystemFont" id="SystemFont_6rmj2"]
 
 [sub_resource type="SystemFont" id="SystemFont_cgfq5"]
 font_italic = true
@@ -37,18 +40,50 @@ load_path = "res://.godot/imported/m.png-32273f4cef3ee47dd4126c045047b05b.ctex"
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cof4p"]
 load_path = "res://.godot/imported/q.png-d1756d6b5f1f4925c7dab03724a67794.ctex"
 
-[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar")]
+[sub_resource type="Theme" id="Theme_vdcm2"]
+
+[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.99865264, 1)
 script = ExtResource("1_nt7q6")
-hotbar = NodePath("Hotbar")
 turret_data = ExtResource("2_8dubc")
+hotbar = NodePath("Hotbar")
 desc_bar = NodePath("Description")
-desc_offset = 0.0
+continue_game_button = NodePath("CanvasLayer/Menu/Button")
+pause_menu_layer = NodePath("CanvasLayer")
+sensitivity_slider = NodePath("CanvasLayer/Menu/SensSlider")
+quit_game_button = NodePath("CanvasLayer/Menu/Button2")
+sens_label = NodePath("CanvasLayer/Menu/SensSlider/Label")
+money_label = NodePath("TextureRect/MoneyLabel")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1337567701]
+layout_mode = 0
+offset_left = 13.01754
+offset_top = 12.0
+offset_right = 80.10794
+offset_bottom = 79.0904
+texture = ExtResource("3_6rmj2")
+expand_mode = 1
+
+[node name="MoneyLabel" type="Label" parent="TextureRect" unique_id=713856705]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 15.020233
+offset_top = -11.5452
+offset_right = 55.020233
+offset_bottom = 11.4548
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_6rmj2")
 
 [node name="Hotbar" type="ItemList" parent="." unique_id=863928529]
 layout_mode = 1
@@ -58,9 +93,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -228.0
-offset_top = -141.29001
+offset_top = -111.0
 offset_right = 228.0
-offset_bottom = -40.29004
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
@@ -113,8 +148,10 @@ item_6/icon = ExtResource("5_ktti3")
 [node name="Description" type="ItemList" parent="." unique_id=1927184316]
 z_index = -3
 layout_mode = 0
-offset_right = 178.0
-offset_bottom = 42.0
+offset_left = 529.71375
+offset_top = 837.0
+offset_right = 707.71375
+offset_bottom = 879.0
 size_flags_vertical = 8
 theme_override_fonts/font = SubResource("SystemFont_cgfq5")
 auto_width = true
@@ -128,3 +165,87 @@ item_1/icon = ExtResource("4_vdcm2")
 item_2/icon = ExtResource("5_6rmj2")
 item_3/icon = ExtResource("6_vsj0x")
 item_4/icon = ExtResource("7_qsv74")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1929879615]
+visible = false
+
+[node name="MenuBackground" type="ColorRect" parent="CanvasLayer" unique_id=2006255890]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.078431375, 0.078431375, 0.74509805)
+
+[node name="Menu" type="ColorRect" parent="CanvasLayer" unique_id=1310881182]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -209.0
+offset_top = 143.0
+offset_right = 210.0
+offset_bottom = 562.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.3529412)
+
+[node name="Button" type="Button" parent="CanvasLayer/Menu" unique_id=1121224987]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.5
+offset_top = 38.0
+offset_right = 45.5
+offset_bottom = 69.0
+grow_horizontal = 2
+scale = Vector2(1.0494885, 0.96245956)
+theme = SubResource("Theme_vdcm2")
+text = "Continue"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/Menu" unique_id=1421442709]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -44.5
+offset_top = 82.0
+offset_right = 45.5
+offset_bottom = 113.0
+grow_horizontal = 2
+scale = Vector2(1.0494885, 0.96245956)
+theme = SubResource("Theme_vdcm2")
+text = "Quit Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="SensSlider" type="HSlider" parent="CanvasLayer/Menu" unique_id=1830732518]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = 24.5
+offset_right = 103.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 0.001
+max_value = 1.2
+step = 0.001
+value = 0.401
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/SensSlider" unique_id=1368939134]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50240386
+anchor_top = -0.59375
+anchor_right = 0.50240386
+anchor_bottom = -0.59375
+offset_left = -34.5
+offset_right = 34.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Sensivity"
+metadata/_edit_use_anchors_ = true
