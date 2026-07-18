@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://daxr41b2wnlfg"]
+
+[ext_resource type="Script" uid="uid://4dc8xj3venkp" path="res://scripts/ui.gd" id="1_nt7q6"]
+[ext_resource type="JSON" path="res://data/turrets.json" id="2_8dubc"]
+[ext_resource type="Texture2D" uid="uid://cnrlsiqve05xm" path="res://assets/color_textures/green_texture.tres" id="2_wm3ai"]
+[ext_resource type="Texture2D" uid="uid://csdiimu6nenff" path="res://assets/color_textures/blue_texture.tres" id="3_8dubc"]
+[ext_resource type="Texture2D" uid="uid://bak7t5q2lfikk" path="res://assets/color_textures/orange_texture.tres" id="4_p7vwb"]
+[ext_resource type="Texture2D" uid="uid://bsolxvg30p5i0" path="res://assets/color_textures/red_texture.tres" id="5_ktti3"]
+
+[sub_resource type="SystemFont" id="SystemFont_cgfq5"]
+font_italic = true
+subpixel_positioning = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dvkv"]
+load_path = "res://.godot/imported/c.png-c81bc4e112ed23e4bf641e7dcec5e7c4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vdcm2"]
+load_path = "res://.godot/imported/d.png-392209cb4468a062445b958fb2b3b5a4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6rmj2"]
+load_path = "res://.godot/imported/f.png-7ca311a8c1fd684e3d9ea75c35b77a55.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vsj0x"]
+load_path = "res://.godot/imported/h.png-94b83572877ed72aa0f13f338495c332.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qsv74"]
+load_path = "res://.godot/imported/l.png-c5e51c8ae85af2d68862153e854f1aa3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h1mc3"]
+load_path = "res://.godot/imported/m.png-32273f4cef3ee47dd4126c045047b05b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cof4p"]
+load_path = "res://.godot/imported/q.png-d1756d6b5f1f4925c7dab03724a67794.ctex"
+
+[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt7q6")
+hotbar = NodePath("Hotbar")
+turret_data = ExtResource("2_8dubc")
+
+[node name="Hotbar" type="ItemList" parent="." unique_id=863928529]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -110.0
+offset_right = 228.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_cgfq5")
+auto_width = true
+auto_height = true
+item_count = 7
+max_columns = 7
+icon_mode = 0
+fixed_icon_size = Vector2i(60, 60)
+item_0/text = " "
+item_0/icon = SubResource("CompressedTexture2D_7dvkv")
+item_1/icon = SubResource("CompressedTexture2D_vdcm2")
+item_2/icon = SubResource("CompressedTexture2D_6rmj2")
+item_3/icon = SubResource("CompressedTexture2D_vsj0x")
+item_4/icon = SubResource("CompressedTexture2D_qsv74")
+item_5/icon = SubResource("CompressedTexture2D_h1mc3")
+item_6/icon = SubResource("CompressedTexture2D_cof4p")
+
+[node name="BackgroundHotBar" type="ItemList" parent="." unique_id=2020233917]
+z_index = -1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -139.0
+offset_right = 228.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_cgfq5")
+auto_width = true
+auto_height = true
+item_count = 7
+max_columns = 7
+icon_mode = 0
+fixed_icon_size = Vector2i(60, 60)
+item_0/icon = ExtResource("2_wm3ai")
+item_1/icon = ExtResource("2_wm3ai")
+item_2/icon = ExtResource("3_8dubc")
+item_3/icon = ExtResource("3_8dubc")
+item_4/icon = ExtResource("4_p7vwb")
+item_5/icon = ExtResource("4_p7vwb")
+item_6/icon = ExtResource("5_ktti3")
+
+[node name="Label" type="Label" parent="." unique_id=964197120]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -166.0
+offset_right = 32.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "
+"
+metadata/_edit_use_anchors_ = true

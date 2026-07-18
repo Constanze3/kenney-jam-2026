@@ -4,36 +4,9 @@
 [ext_resource type="JSON" path="res://data/turrets.json" id="2_d2wvv"]
 [ext_resource type="Script" uid="uid://dys6hlsx82si3" path="res://scripts/build_mode.gd" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://bog777ycmljgj" path="res://assets/food_kit/burger-cheese.glb" id="3_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://cnrlsiqve05xm" path="res://assets/color_textures/green_texture.tres" id="5_smehm"]
-[ext_resource type="Texture2D" uid="uid://csdiimu6nenff" path="res://assets/color_textures/blue_texture.tres" id="6_ur7pv"]
-[ext_resource type="Texture2D" uid="uid://bak7t5q2lfikk" path="res://assets/color_textures/orange_texture.tres" id="7_y4r1p"]
-[ext_resource type="Texture2D" uid="uid://bsolxvg30p5i0" path="res://assets/color_textures/red_texture.tres" id="8_d2wvv"]
+[ext_resource type="PackedScene" uid="uid://daxr41b2wnlfg" path="res://scenes/ui.tscn" id="3_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8ps"]
-
-[sub_resource type="SystemFont" id="SystemFont_a8ls1"]
-font_italic = true
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dqkch"]
-load_path = "res://.godot/imported/c.png-c81bc4e112ed23e4bf641e7dcec5e7c4.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qlg0r"]
-load_path = "res://.godot/imported/d.png-392209cb4468a062445b958fb2b3b5a4.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tuyoq"]
-load_path = "res://.godot/imported/f.png-7ca311a8c1fd684e3d9ea75c35b77a55.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fjrip"]
-load_path = "res://.godot/imported/h.png-94b83572877ed72aa0f13f338495c332.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_smehm"]
-load_path = "res://.godot/imported/l.png-c5e51c8ae85af2d68862153e854f1aa3.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ur7pv"]
-load_path = "res://.godot/imported/m.png-32273f4cef3ee47dd4126c045047b05b.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y4r1p"]
-load_path = "res://.godot/imported/q.png-d1756d6b5f1f4925c7dab03724a67794.ctex"
 
 [node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "hotbar")]
 script = ExtResource("1_3vyb7")
@@ -41,8 +14,10 @@ player_camera = NodePath("PlayerCamera")
 sensitivity = 0.5
 movement_speed = 5.0
 jump_force = 3.0
-hotbar = NodePath("Hotbar")
+hotbar = NodePath("")
 turret_data = ExtResource("2_d2wvv")
+
+[node name="UI" parent="." unique_id=921849187 instance=ExtResource("3_qlg0r")]
 
 [node name="PlayerCamera" type="Camera3D" parent="." unique_id=1214775517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55117905, 0)
@@ -59,62 +34,3 @@ script = ExtResource("2_g2els")
 build_range = 10.0
 raycast_collision_mask = 2
 example = ExtResource("3_qhqgy")
-
-[node name="Hotbar" type="ItemList" parent="." unique_id=1080790521]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -228.0
-offset_top = -110.0
-offset_right = 228.0
-offset_bottom = -38.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-theme_override_fonts/font = SubResource("SystemFont_a8ls1")
-auto_width = true
-auto_height = true
-item_count = 7
-max_columns = 7
-icon_mode = 0
-fixed_icon_size = Vector2i(60, 60)
-item_0/text = "60$"
-item_0/icon = SubResource("CompressedTexture2D_dqkch")
-item_1/icon = SubResource("CompressedTexture2D_qlg0r")
-item_2/icon = SubResource("CompressedTexture2D_tuyoq")
-item_3/icon = SubResource("CompressedTexture2D_fjrip")
-item_4/icon = SubResource("CompressedTexture2D_smehm")
-item_5/icon = SubResource("CompressedTexture2D_ur7pv")
-item_6/icon = SubResource("CompressedTexture2D_y4r1p")
-
-[node name="BackgroundHotBar" type="ItemList" parent="." unique_id=1376290080]
-z_index = -1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -228.0
-offset_top = -139.0
-offset_right = 228.0
-offset_bottom = -38.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-theme_override_fonts/font = SubResource("SystemFont_a8ls1")
-auto_width = true
-auto_height = true
-item_count = 7
-max_columns = 7
-icon_mode = 0
-fixed_icon_size = Vector2i(60, 60)
-item_0/text = "60$"
-item_0/icon = ExtResource("5_smehm")
-item_1/icon = ExtResource("5_smehm")
-item_2/icon = ExtResource("6_ur7pv")
-item_3/icon = ExtResource("6_ur7pv")
-item_4/icon = ExtResource("7_y4r1p")
-item_5/icon = ExtResource("7_y4r1p")
-item_6/icon = ExtResource("8_d2wvv")
