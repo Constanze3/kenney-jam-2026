@@ -15,7 +15,8 @@ axis_lock_angular_z = true
 script = ExtResource("1_md0e3")
 face_area = NodePath("FaceTrigger")
 jump_force = 10.0
-climbing_velocity = 4.0
+climbing_velocity = 8.0
+speed = 15.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1250081614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00024414063)

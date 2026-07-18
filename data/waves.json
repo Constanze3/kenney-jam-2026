@@ -1,0 +1,23 @@
+[
+	{
+		"duration": 123,
+		"enemy_counts": {
+			"beaver": 10
+		}
+	},
+	{
+		"duration": 123,
+		"enemy_counts": {
+			"beaver": 6,
+			"bee":5
+		}
+	},
+	{
+		"duration": 123,
+		"enemy_counts": {
+			"beaver": 10,
+			"bee":4
+		}
+	}
+	
+]
