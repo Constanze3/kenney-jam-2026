@@ -29,7 +29,7 @@ func set_build_mode_enabled(value: bool) -> void:
 	set_process(enabled)
 	set_physics_process(enabled)
 
-	if not enabled: 
+	if not enabled and shadow: 
 		shadow.hide()
 		
 func _physics_process(_delta: float) -> void:
@@ -70,4 +70,3 @@ func show_shadow():
 
 func spawn_object():
 	pass	
-
