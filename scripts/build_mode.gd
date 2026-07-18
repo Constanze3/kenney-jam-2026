@@ -15,18 +15,23 @@ extends Node3D
 @export var can_place = false
 
 func _ready() -> void:
+	set_build_mode_enabled(false)
+	# todo this is enabled
 	set_object_to_place()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_build_mode"):
-		enabled = not enabled
+		set_build_mode_enabled(not enabled)
 
-		set_process(enabled)
-		set_physics_process(enabled)
+func set_build_mode_enabled(value: bool) -> void:
+	enabled = value
 
-		if not enabled: 
-			shadow.hide()
+	set_process(enabled)
+	set_physics_process(enabled)
 
+	if not enabled: 
+		shadow.hide()
+		
 func _physics_process(_delta: float) -> void:
 	show_shadow()
 

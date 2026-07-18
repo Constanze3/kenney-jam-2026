@@ -179,11 +179,7 @@ environment = SubResource("Environment_a08nb")
 physics_material_override = SubResource("PhysicsMaterial_a08nb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1207242884]
-<<<<<<< HEAD
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46742535, 0.09474945, -0.15859222)
-=======
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016151428, 0, -0.050912857)
->>>>>>> fc7ca9a (fix: clear target when enemy is not targetable anymore)
 mesh = SubResource("BoxMesh_a08nb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1055713341]
