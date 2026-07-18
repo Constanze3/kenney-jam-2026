@@ -3,6 +3,7 @@ extends Node
 
 @export var tower : Node3D
 @export var enemy_spawner : EnemySpawner
+@export var player: Player
 
 @export_category("Tower Data")
 @export var max_tower_health : float

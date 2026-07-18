@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://maen18bhyk43"]
 
 [ext_resource type="Script" uid="uid://cmqb0pf6vk4oj" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dys6hlsx82si3" path="res://scripts/build_mode.gd" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://bog777ycmljgj" path="res://assets/food_kit/burger-cheese.glb" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8ps"]
 
@@ -20,3 +22,9 @@ shape = SubResource("CapsuleShape3D_vt8ps")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1193535269]
 current = true
+
+[node name="BuildMode" type="Node3D" parent="." unique_id=2056272454]
+script = ExtResource("2_g2els")
+build_range = 10.0
+raycast_collision_mask = 2
+example = ExtResource("3_qhqgy")

@@ -65,7 +65,6 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if target and not currently_shooting and not can_target(target):
 		target = null
-		print("clear target")
 
 func targeting_loop() -> void:
 	while true:
@@ -74,7 +73,6 @@ func targeting_loop() -> void:
 
 func target_closest_enemy() -> void:
 	var enemies = Constants.game_manager.enemies
-
 	var enemies_within_range = []
 	for enemy in enemies:
 		var distance = global_position.distance_to(enemy.global_position)

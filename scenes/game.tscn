@@ -155,10 +155,11 @@ shadow_mesh = SubResource("ArrayMesh_rc1yw")
 [sub_resource type="BoxShape3D" id="BoxShape3D_vt8ps"]
 size = Vector3(10.56228, 0.4828148, 10.604752)
 
-[node name="Game" type="Node3D" unique_id=2062472101 node_paths=PackedStringArray("tower", "enemy_spawner")]
+[node name="Game" type="Node3D" unique_id=2062472101 node_paths=PackedStringArray("tower", "enemy_spawner", "player")]
 script = ExtResource("1_iywne")
 tower = NodePath("Tower")
 enemy_spawner = NodePath("EnemySpawner")
+player = NodePath("Player")
 max_tower_health = 100.0
 wait_timer = 5.0
 wave_data = ExtResource("2_u5sy4")
@@ -189,9 +190,10 @@ mesh = SubResource("BoxMesh_a08nb")
 shape = SubResource("BoxShape3D_yqjtg")
 
 [node name="Tower" type="StaticBody3D" parent="." unique_id=1875714534]
+collision_layer = 3
 
 [node name="tower-hexagon-mid" type="MeshInstance3D" parent="Tower" unique_id=553346273]
-transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 17.46421, 0)
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0.027793884, 17.481977, -0.0415864)
 mesh = SubResource("ArrayMesh_kjbdy")
 
 [node name="tower-base" type="MeshInstance3D" parent="Tower" unique_id=1639800659]

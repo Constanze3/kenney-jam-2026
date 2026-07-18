@@ -28,6 +28,7 @@ shape = SubResource("BoxShape3D_a5oyu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestGround" unique_id=495023165]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+layers = 3
 mesh = SubResource("PlaneMesh_vt8ps")
 
 [node name="Player" parent="." unique_id=432607406 instance=ExtResource("1_g7g4h")]
