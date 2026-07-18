@@ -100,7 +100,7 @@ func show_build_shadow():
 	elif show_shadow:
 		shadow.show_as_obstructed()
 	else:
-		shadow.hide()
+		shadow.hide_shadow()
 	
 	if not result.is_empty():
 		shadow.object.global_position = result["position"]
