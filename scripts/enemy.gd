@@ -41,6 +41,10 @@ func set_enemy_data(data : Dictionary) -> void:
 		var model = model_scene.instantiate()
 		model_parent.add_child(model)
 
+func _process(delta: float) -> void:
+	if health <= 0:
+		queue_free()
+		print("I AM DEAD")
 
 func _physics_process(delta: float) -> void:
 	var target := Vector3(0,global_position.y,0)
@@ -91,4 +95,8 @@ func on_body_entered(body: Node3D) -> void:
 func on_body_exited(body: Node3D) -> void:
 	if body == Constants.game_manager.tower:
 		climbing = false
+	return
+
+func do_damage(amount:int) -> void:
+	health -= amount
 	return

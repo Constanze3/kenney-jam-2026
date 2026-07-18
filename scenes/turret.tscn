@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://dokpe2ud1k2vq" path="res://scripts/turret/turret.gd" id="1_6fjxm"]
 [ext_resource type="PackedScene" uid="uid://cu32g0o4rjh21" path="res://scenes/bullet.tscn" id="2_dirdf"]
 [ext_resource type="AudioStream" uid="uid://copymaoabbo6p" path="res://audio/turret/gun-t-sound.mp3" id="3_mqfwu"]
-[ext_resource type="PackedScene" uid="uid://dxt3y0krvxxth" path="res://assets/guns/blaster-g.glb" id="4_0dv4j"]
 [ext_resource type="PackedScene" uid="uid://csfrbaubgqokb" path="res://assets/graveyard/cross-column.glb" id="5_tg0ex"]
 
-[node name="Turret" type="Node3D" unique_id=1007567348 node_paths=PackedStringArray("shot_point", "turret_head")]
+[node name="Turret" type="Node3D" unique_id=1007567348 node_paths=PackedStringArray("model_parent", "turret_head", "shot_point")]
 transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)
 script = ExtResource("1_6fjxm")
 bullet_scene = ExtResource("2_dirdf")
 shot_sound = ExtResource("3_mqfwu")
-shot_point = NodePath("TurretHead/ShotPoint")
+model_parent = NodePath("TurretHead/Gun")
 turret_head = NodePath("TurretHead")
 inaccuracy = 0.1
+shot_point = NodePath("TurretHead/ShotPoint")
 
 [node name="TurretHead" type="Node3D" parent="." unique_id=1696550809]
 transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1133462, -0.01017198)
@@ -21,8 +21,8 @@ transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 
 [node name="ShotPoint" type="Node3D" parent="TurretHead" unique_id=1464069359]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949, -1.0652034)
 
-[node name="blaster-g2" parent="TurretHead" unique_id=2116126992 instance=ExtResource("4_0dv4j")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -0.21853054)
+[node name="Gun" type="Node3D" parent="TurretHead" unique_id=1823782857]
+transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 0, 0, -0.1648483)
 
 [node name="TurretBase" parent="." unique_id=1778716703 instance=ExtResource("5_tg0ex")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)

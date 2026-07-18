@@ -1,0 +1,89 @@
+[
+	{
+		"name":"blaster-c",
+		"damage" : 20.0,
+		"fire_rate": 0.3,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-c.glb",
+		"cost": 10
+	},
+	{
+		"name":"blaster-d",
+		"damage" : 20.0,
+		"fire_rate": 0.1,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-d.glb",
+		"cost": 10
+
+	},
+	{
+		"name":"blaster-f",
+		"damage" : 20.0,
+		"fire_rate": 1.0,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-f.glb",
+		"cost": 10
+	}
+	,
+	{
+		"name":"blaster-h",
+		"damage" : 20.0,
+		"fire_rate": 1.0,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-h.glb",
+		"cost": 10
+	},
+	{
+		"name":"blaster-l",
+		"damage" : 20.0,
+		"fire_rate": 1.0,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-l.glb",
+		"cost": 10
+	}
+	,
+	{
+		"name":"blaster-m",
+		"damage" : 20.0,
+		"fire_rate": 1.0,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-m.glb",
+		"cost": 10
+	},
+	{
+		"name":"blaster-q",
+		"damage" : 20.0,
+		"fire_rate": 1.0,
+		"max_range" : 20.0,
+		"inaccuracy" : 0.1,
+		"bullet_speed" : 0.5,
+		"re_targeting_delay" : 2.0,
+		"shot_sound_path" : "res://audio/turret/gun-t-sound.mp3",
+		"model_path" : "res://assets/guns/blaster-q.glb",
+		"cost": 10
+	}
+]

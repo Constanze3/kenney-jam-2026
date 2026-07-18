@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://l2pbgum2qhon"]
+
+[ext_resource type="Script" uid="uid://qskg7gstqdth" path="res://scripts/turret/dummy_spawner.gd" id="1_rsw05"]
+[ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="2_5cm4j"]
+[ext_resource type="JSON" path="res://data/turrets.json" id="3_ovw1a"]
+
+[node name="DummySpawner" type="Node3D" unique_id=1605974503]
+script = ExtResource("1_rsw05")
+turret_scene = ExtResource("2_5cm4j")
+turret_data = ExtResource("3_ovw1a")

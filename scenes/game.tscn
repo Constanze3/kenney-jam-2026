@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://maen18bhyk43" path="res://scenes/player.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://d26dikvntj27w" path="res://assets/castle_kit/Textures/colormap.png" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c04ejqw8meqcd" path="res://scenes/food.tscn" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://qskg7gstqdth" path="res://scripts/turret/dummy_spawner.gd" id="7_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="7_u5sy4"]
+[ext_resource type="JSON" path="res://data/turrets.json" id="9_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -174,6 +176,7 @@ environment = SubResource("Environment_a08nb")
 physics_material_override = SubResource("PhysicsMaterial_a08nb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1207242884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46742535, 0.09474945, -0.15859222)
 mesh = SubResource("BoxMesh_a08nb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1055713341]
@@ -203,7 +206,7 @@ transform = Transform3D(11.41, 0, 0, 0, -18.765638, 1.7228616e-06, 0, -2.8335323
 mesh = SubResource("ArrayMesh_303yn")
 
 [node name="tower-square-mid-open-simple" type="MeshInstance3D" parent="Mini Towers" unique_id=1673274710]
-transform = Transform3D(11.41, 0, 0, 0, -11.41, 1.7228621e-06, 0, -1.7228621e-06, -11.41, 0, 16.448, -24.633)
+transform = Transform3D(11.41, 0, 0, 0, -18.766, 1.7228621e-06, 0, -2.8335874e-06, -11.41, 0, 16.448, -24.633)
 mesh = SubResource("ArrayMesh_303yn")
 
 [node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="Mini Towers" unique_id=1969888748]
@@ -217,14 +220,11 @@ mesh = SubResource("ArrayMesh_303yn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mini Towers" unique_id=1936329598]
 shape = SubResource("BoxShape3D_a08nb")
 
-[node name="FoodBox" parent="." unique_id=1909826369 instance=ExtResource("6_p57ef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.578936, 0)
-
-[node name="Turret" parent="." unique_id=1007567348 instance=ExtResource("7_u5sy4")]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 3.4386878, 23.313988, 1.7507496)
-
-[node name="Turret2" parent="." unique_id=1575817502 instance=ExtResource("7_u5sy4")]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 5.0533533, 23.453495, -1.3275025)
-
-[node name="Turret3" parent="." unique_id=1337293494 instance=ExtResource("7_u5sy4")]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, -0.45656204, 23.453495, 0.6719284)
+[node name="DummySpawner" type="Node3D" parent="." unique_id=1309612378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0203838, 0)
+script = ExtResource("7_0tnpc")
+turret_scene = ExtResource("7_u5sy4")
+turret_data = ExtResource("9_vtaks")
+spawn_radius = 13.29
+amount_to_spawn = 20
+metadata/_custom_type_script = "uid://qskg7gstqdth"

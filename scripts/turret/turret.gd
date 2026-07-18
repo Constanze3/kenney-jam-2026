@@ -1,11 +1,13 @@
+class_name Turret
 extends Node3D
 
 @export var bullet_scene: PackedScene
 @export var shot_sound: AudioStreamMP3
-
+@export var model_parent : Node3D
 @export var turret_head: Node3D
 @export var shot_point_node_name: String = "ShotPoint"
 
+@export var damage : float = 10
 @export var seconds_between_shots: float = 1
 @export var inaccuracy: float = 1
 @export var max_range: float = 20
@@ -29,6 +31,7 @@ extends Node3D
 
 @export var shadow_shot_point: Node3D
 @export var shadow_turret_head: Node3D
+
 
 func _ready() -> void:
 	shot_deadline = max_shot_duraton / bullet_speed
@@ -195,5 +198,8 @@ func end_shot(current_shot: Dictionary) -> void:
 	if raycast_result.is_empty():
 		print("miss")
 	else:
+		
 		var collider: Node3D = raycast_result["collider"]
+		if collider is Enemy:
+			collider.do_damage(damage)
 		print(collider.name)

@@ -74,4 +74,3 @@ func damage_tower(damage_amount : int) -> void:
 
 func game_over() -> void:
 	return
-
