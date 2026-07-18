@@ -142,7 +142,9 @@ func begin_shot():
 	var bullet = bullet_scene.instantiate() as Node3D
 	add_child(bullet)
 	bullet.global_position = shot_point.global_position
-	bullet.look_at(end_position) 
+
+	if bullet.global_position.distance_to(end_position) > 0.1:
+		bullet.look_at(end_position) 
 
 	var shot_audio_player = AudioStreamPlayer3D.new()
 	add_child(shot_audio_player)
@@ -187,6 +189,8 @@ func end_shot(current_shot: Dictionary) -> void:
 	bullet.queue_free()
 
 	var raycast_result: Dictionary = current_shot["raycast_result"]
+	if not is_instance_valid(raycast_result["collider"]):
+		return
 
 	if raycast_result.is_empty():
 		print("miss")

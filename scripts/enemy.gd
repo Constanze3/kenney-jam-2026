@@ -43,11 +43,8 @@ func set_enemy_data(data : Dictionary) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_queued_for_deletion():
-		return
-	
-	var target := Vector3(0,position.y,0)
-	if position != target:
+	var target := Vector3(0,global_position.y,0)
+	if global_position.distance_to(target) > 0.1:
 		look_at(target) 
 
 	# Add the gravity.	
@@ -61,7 +58,7 @@ func _physics_process(delta: float) -> void:
 	if climbing:
 		climb()
 	
-	var direction := (Vector3(0,30,0) - position).normalized()
+	var direction := (Vector3(0,30,0) - global_position).normalized()
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
@@ -95,4 +92,3 @@ func on_body_exited(body: Node3D) -> void:
 	if body == Constants.game_manager.tower:
 		climbing = false
 	return
-
