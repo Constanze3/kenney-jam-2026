@@ -41,7 +41,7 @@ func set_enemy_data(data : Dictionary) -> void:
 		var model = model_scene.instantiate()
 		model_parent.add_child(model)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if health <= 0:
 		queue_free()
 		print("I AM DEAD")
