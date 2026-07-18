@@ -5,10 +5,10 @@
 [ext_resource type="JSON" path="res://data/waves.json" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://maen18bhyk43" path="res://scenes/player.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://d26dikvntj27w" path="res://assets/castle_kit/Textures/colormap.png" id="4_lbhrr"]
+[ext_resource type="JSON" path="res://data/turrets.json" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://c04ejqw8meqcd" path="res://scenes/food.tscn" id="6_p57ef"]
-[ext_resource type="Script" uid="uid://qskg7gstqdth" path="res://scripts/turret/dummy_spawner.gd" id="7_0tnpc"]
+[ext_resource type="Script" uid="uid://qskg7gstqdth" path="res://scripts/turret/turret_spawner.gd" id="7_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="7_u5sy4"]
-[ext_resource type="JSON" path="res://data/turrets.json" id="9_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -153,16 +153,24 @@ shadow_mesh = SubResource("ArrayMesh_rc1yw")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a08nb"]
 
-[node name="Game" type="Node3D" unique_id=2062472101 node_paths=PackedStringArray("tower", "enemy_spawner", "player")]
+[node name="Game" type="Node3D" unique_id=2062472101 node_paths=PackedStringArray("tower", "enemy_spawner", "player", "turret_spawner")]
 script = ExtResource("1_iywne")
 tower = NodePath("Tower")
 enemy_spawner = NodePath("EnemySpawner")
 player = NodePath("Player")
+turret_spawner = NodePath("TurretSpawner")
 max_tower_health = 100.0
 wait_timer = 5.0
 wave_data = ExtResource("2_u5sy4")
 
 [node name="EnemySpawner" parent="." unique_id=1012715547 instance=ExtResource("1_uwrxv")]
+
+[node name="TurretSpawner" type="Node3D" parent="." unique_id=1309612378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0203838, 0)
+script = ExtResource("7_0tnpc")
+turret_scene = ExtResource("7_u5sy4")
+turrets_json = ExtResource("6_0tnpc")
+metadata/_custom_type_script = "uid://qskg7gstqdth"
 
 [node name="Player" parent="." unique_id=432607406 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0830936, 26.331724, -0.040649414)
@@ -222,11 +230,3 @@ mesh = SubResource("ArrayMesh_303yn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mini Towers" unique_id=1936329598]
 shape = SubResource("BoxShape3D_a08nb")
 
-[node name="DummySpawner" type="Node3D" parent="." unique_id=1309612378]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0203838, 0)
-script = ExtResource("7_0tnpc")
-turret_scene = ExtResource("7_u5sy4")
-turret_data = ExtResource("9_vtaks")
-spawn_radius = 13.29
-amount_to_spawn = 20
-metadata/_custom_type_script = "uid://qskg7gstqdth"

@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody3D
 
 @export var player_camera: Camera3D
+@export var build_mode: BuildMode
 
 @export var sensitivity: float = 1.0
 @export var sensitivity_multiplier: float = 0.005

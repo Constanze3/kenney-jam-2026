@@ -3,20 +3,38 @@
 [ext_resource type="Script" uid="uid://dokpe2ud1k2vq" path="res://scripts/turret/turret.gd" id="1_6fjxm"]
 [ext_resource type="PackedScene" uid="uid://cu32g0o4rjh21" path="res://scenes/bullet.tscn" id="2_dirdf"]
 [ext_resource type="AudioStream" uid="uid://copymaoabbo6p" path="res://audio/turret/gun-t-sound.mp3" id="3_mqfwu"]
+[ext_resource type="Material" uid="uid://tckj3aydj32u" path="res://materials/placable_build_shadow.tres" id="5_0dv4j"]
+[ext_resource type="Script" uid="uid://b0ml6anyetn0h" path="res://scripts/build_shadow.gd" id="5_6fjxm"]
 [ext_resource type="PackedScene" uid="uid://csfrbaubgqokb" path="res://assets/graveyard/cross-column.glb" id="5_tg0ex"]
+[ext_resource type="Material" uid="uid://cj65iqu363cf1" path="res://materials/obstructed_build_shadow.tres" id="6_tg0ex"]
 
-[node name="Turret" type="Node3D" unique_id=1007567348 node_paths=PackedStringArray("model_parent", "turret_head", "shot_point")]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5dq4"]
+size = Vector3(0.3088379, 1.1816406, 0.44299316)
+
+[node name="Turret" type="Node3D" unique_id=1007567348 node_paths=PackedStringArray("model_parent", "build_shadow", "turret_head", "shot_point")]
 script = ExtResource("1_6fjxm")
 bullet_scene = ExtResource("2_dirdf")
 shot_sound = ExtResource("3_mqfwu")
 model_parent = NodePath("TurretHead/Gun")
+build_shadow = NodePath("BuildShadow")
 turret_head = NodePath("TurretHead")
 inaccuracy = 0.1
 shot_point = NodePath("TurretHead/ShotPoint")
 
+[node name="BuildShadow" type="Area3D" parent="." unique_id=1070267247 node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003653407, 0)
+script = ExtResource("5_6fjxm")
+placable_material = ExtResource("5_0dv4j")
+obstructed_material = ExtResource("6_tg0ex")
+object = NodePath("..")
+metadata/_custom_type_script = "uid://b0ml6anyetn0h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildShadow" unique_id=1491303938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020874023, 0.58203125, 0.0051879883)
+shape = SubResource("BoxShape3D_g5dq4")
+
 [node name="TurretHead" type="Node3D" parent="." unique_id=1696550809]
-transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1133462, -0.01017198)
+transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1169996, -0.01017198)
 
 [node name="ShotPoint" type="Node3D" parent="TurretHead" unique_id=1464069359]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949, -1.0652034)
@@ -25,4 +43,4 @@ transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949
 transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 0, 0, -0.1648483)
 
 [node name="TurretBase" parent="." unique_id=1778716703 instance=ExtResource("5_tg0ex")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.003653407, 0)

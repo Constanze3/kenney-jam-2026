@@ -4,6 +4,7 @@ extends Node
 @export var tower : Node3D
 @export var enemy_spawner : EnemySpawner
 @export var player: Player
+@export var turret_spawner: TurretSpawner
 
 @export_category("Tower Data")
 @export var max_tower_health : float
@@ -37,6 +38,16 @@ func _ready() -> void:
 	wave_no = 0
 	start_wave()
 
+func can_spend_money(amound: int) -> bool:
+	return amound <= bank
+
+## Returns false if there isn't enough money in the bank, true on success.
+func try_spend_money(amount: int) -> bool:
+	if not can_spend_money(amount):
+		return false
+
+	bank -= amount
+	return true
 
 func start_wave() -> void:
 	if wave_no >= wave_data.data.size():

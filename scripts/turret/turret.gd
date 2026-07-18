@@ -3,7 +3,10 @@ extends Node3D
 
 @export var bullet_scene: PackedScene
 @export var shot_sound: AudioStreamMP3
+
 @export var model_parent : Node3D
+@export var build_shadow: BuildShadow
+
 @export var turret_head: Node3D
 @export var shot_point_node_name: String = "ShotPoint"
 
@@ -16,7 +19,7 @@ extends Node3D
 @export var min_shot_sound_pitch: float = 0.9
 @export var max_shot_sound_pitch: float = 1.1
 
-@export var targeting_delay_seconds: float = 2
+@export var retargeting_delay_seconds: float = 2
 
 @export_group("Debug")
 
@@ -69,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 func targeting_loop() -> void:
 	while true:
 		target_closest_enemy()
-		await get_tree().create_timer(targeting_delay_seconds).timeout
+		await get_tree().create_timer(retargeting_delay_seconds).timeout
 
 func target_closest_enemy() -> void:
 	var enemies = Constants.game_manager.enemies
