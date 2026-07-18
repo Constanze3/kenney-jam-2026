@@ -101,7 +101,6 @@ func begin_shot():
 	var bullet = bullet_scene.instantiate() as Node3D
 	add_child(bullet)
 	bullet.global_position = shot_point.global_position
-	bullet.look_at(end_position) 
 
 	has_active_shot = true
 	current_shot = {
