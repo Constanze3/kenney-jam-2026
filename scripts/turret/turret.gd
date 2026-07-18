@@ -32,6 +32,7 @@ extends Node3D
 @export var shadow_shot_point: Node3D
 @export var shadow_turret_head: Node3D
 
+@export var currently_shooting: bool = false
 
 func _ready() -> void:
 	shot_deadline = max_shot_duraton / bullet_speed
@@ -60,7 +61,12 @@ func shoot() -> void:
 func _process(_delta: float) -> void:
 	if target:
 		turret_head.look_at(target.global_position, Vector3.UP)
-	
+
+func _physics_process(_delta: float) -> void:
+	if target and not currently_shooting and not can_target(target):
+		target = null
+		print("clear target")
+
 func targeting_loop() -> void:
 	while true:
 		target_closest_enemy()
@@ -68,7 +74,6 @@ func targeting_loop() -> void:
 
 func target_closest_enemy() -> void:
 	var enemies = Constants.game_manager.enemies
-	var space_state = get_world_3d().direct_space_state
 
 	var enemies_within_range = []
 	for enemy in enemies:
@@ -89,25 +94,42 @@ func target_closest_enemy() -> void:
 		if closest and min_distance < distance: 
 			continue
 
-		shadow_turret_head.look_at(enemy.global_position)
-
-		var query = PhysicsRayQueryParameters3D.create(
-			shadow_shot_point.global_position,
-			enemy.global_position
-		)
-		query.exclude = [self]
-		query.hit_from_inside = true
-
-		var result = space_state.intersect_ray(query)
-		if not result.is_empty() and result["collider"] == enemy:
+		if can_target_with_distance(enemy, distance):
 			closest = enemy
 			min_distance = distance
 	
 	target = closest
 
+func can_target(enemy: Enemy) -> bool:
+	var distance = global_position.distance_to(enemy.global_position)
+	return can_target_with_distance(enemy, distance)
+
+func can_target_with_distance(enemy: Enemy, distance: float) -> bool:
+	var space_state = get_world_3d().direct_space_state
+
+	if distance > max_range:
+		return false
+
+	shadow_turret_head.look_at(enemy.global_position)
+
+	var query = PhysicsRayQueryParameters3D.create(
+		shadow_shot_point.global_position,
+		enemy.global_position
+	)
+	query.exclude = [self]
+	query.hit_from_inside = true
+
+	var result = space_state.intersect_ray(query)
+	if not result.is_empty() and result["collider"] == enemy:
+		return true
+
+	return false
+
 func begin_shot():
 	if not target:
 		return
+
+	currently_shooting = true
 
 	var vector_to_target = target.global_position - shot_point.global_position
 	var orthogonal_unit_vector = Vector3(
@@ -196,10 +218,11 @@ func end_shot(current_shot: Dictionary) -> void:
 		return
 
 	if raycast_result.is_empty():
-		print("miss")
+		# miss
+		pass
 	else:
-		
 		var collider: Node3D = raycast_result["collider"]
 		if collider is Enemy:
 			collider.do_damage(damage)
-		print(collider.name)
+
+	currently_shooting = false
