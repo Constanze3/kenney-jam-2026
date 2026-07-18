@@ -12,6 +12,7 @@ extends CharacterBody3D
 @export_category("Enemy Data")
 @export var health : float
 @export var damage : int
+@export var money : int
 
 @export_group("Debug")
 @export var climbing : bool
@@ -30,6 +31,7 @@ func set_enemy_data(data : Dictionary) -> void:
 	speed = data["walk_speed"]
 	climbing_velocity = data["climb_speed"]
 	jump_force = data["jump_height"]
+	money = data["money"]
 	scale = Vector3.ONE * float(data["scale"])
 
 	var model_scene = load(data["path"])
@@ -77,6 +79,7 @@ func climb() -> void:
 #Used to keep track of the amount of current enemies left in GameManager
 func _exit_tree() -> void:
 	Constants.game_manager.current_enemy_count -= 1
+	Constants.game_manager.bank += money
 
 
 func on_body_entered(body: Node3D) -> void:

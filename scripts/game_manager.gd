@@ -14,7 +14,7 @@ extends Node
 @export var wave_enemy_count : int
 @export var wait_timer : float
 @export var wave_data : JSON
-
+@export var bank : int
 
 var wave_ended: bool = false
 

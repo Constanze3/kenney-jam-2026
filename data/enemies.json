@@ -7,6 +7,7 @@
 		"climb_speed" : 3,
 		"jump_height" : 6,
 		"scale" : 1,
+		"money" : 10,
 		"path": "res://assets/cube_pets/animal-beaver.glb"
 	},
 	{
@@ -17,6 +18,7 @@
 		"climb_speed" : 6,
 		"jump_height" : 7,
 		"scale" : 0.75,
+		"money" : 15,
 		"path": "res://assets/cube_pets/animal-bee.glb"
 	},
 	{
@@ -27,6 +29,7 @@
 		"climb_speed" : 5,
 		"jump_height" : 8,
 		"scale" : 0.8,
+		"money" : 13,
 		"path": "res://assets/cube_pets/animal-bunny.glb"
 	},
 	{
@@ -37,6 +40,7 @@
 		"climb_speed" : 2,
 		"jump_height" : 2,
 		"scale" : 1.5,
+		"money" : 20,
 		"path": "res://assets/cube_pets/animal-elephant.glb"
 	}
 ]

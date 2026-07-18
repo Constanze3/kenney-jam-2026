@@ -2,7 +2,8 @@
 	{
 		"duration": 123,
 		"enemy_counts": {
-			"beaver": 10
+			"beaver": 100,
+			"elephant": 50
 		}
 	},
 	{
