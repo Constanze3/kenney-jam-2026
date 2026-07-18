@@ -9,6 +9,8 @@ size = Vector3(1, 1, 1.0004883)
 size = Vector3(0.859375, 0.8347168, 0.3421631)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=138548116 node_paths=PackedStringArray("face_area", "model_parent")]
+collision_layer = 2
+collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_md0e3")

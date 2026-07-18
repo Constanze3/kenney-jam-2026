@@ -162,6 +162,7 @@ turret_spawner = NodePath("TurretSpawner")
 max_tower_health = 100.0
 wait_timer = 5.0
 wave_data = ExtResource("2_u5sy4")
+bank = 20
 
 [node name="EnemySpawner" parent="." unique_id=1012715547 instance=ExtResource("1_uwrxv")]
 
@@ -192,7 +193,7 @@ mesh = SubResource("BoxMesh_a08nb")
 shape = SubResource("BoxShape3D_yqjtg")
 
 [node name="Tower" type="StaticBody3D" parent="." unique_id=1875714534]
-collision_layer = 3
+collision_layer = 5
 
 [node name="tower-hexagon-mid" type="MeshInstance3D" parent="Tower" unique_id=553346273]
 transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0.027793884, 17.481977, -0.0415864)
@@ -229,4 +230,3 @@ mesh = SubResource("ArrayMesh_303yn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mini Towers" unique_id=1936329598]
 shape = SubResource("BoxShape3D_a08nb")
-

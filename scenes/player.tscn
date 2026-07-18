@@ -6,9 +6,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8ps"]
 
-[node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera")]
+[node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "build_mode")]
+collision_layer = 2147483664
 script = ExtResource("1_3vyb7")
 player_camera = NodePath("PlayerCamera")
+build_mode = NodePath("BuildMode")
 sensitivity = 0.5
 movement_speed = 5.0
 jump_force = 3.0
@@ -29,4 +31,5 @@ current = true
 [node name="BuildMode" type="Node3D" parent="." unique_id=2056272454]
 script = ExtResource("2_g2els")
 build_range = 10.0
-raycast_collision_mask = 2
+raycast_collision_mask = 5
+can_place_on_mask = 4
