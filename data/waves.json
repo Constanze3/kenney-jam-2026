@@ -18,6 +18,13 @@
 			"beaver": 10,
 			"bee":4
 		}
+	},
+	{
+		"duration": 123,
+		"enemy_counts": {
+			"elephant":5,
+			"bee":4
+		}
 	}
 	
 ]

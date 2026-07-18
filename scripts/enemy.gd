@@ -2,21 +2,43 @@ class_name Enemy
 extends CharacterBody3D
 
 @export var face_area : Area3D
+@export var model_parent : Node3D
+
 @export_category("Movement")
 @export var jump_force : float
 @export var climbing_velocity : float
 @export var speed = 5.0
+
+@export_category("Enemy Data")
+@export var health : float
+@export var damage : int
 
 @export_group("Debug")
 @export var climbing : bool
 @export var should_jump : bool
 
 
-
 func _ready() -> void:
 	face_area.body_entered.connect(on_body_entered)
 	face_area.body_exited.connect(on_body_exited)
-	
+
+
+#Sets the values from enemies.json
+func set_enemy_data(data : Dictionary) -> void:
+	health = data["health"]
+	damage = data["damage"]
+	speed = data["walk_speed"]
+	climbing_velocity = data["climb_speed"]
+	jump_force = data["jump_height"]
+	scale = Vector3.ONE * float(data["scale"])
+
+	var model_scene = load(data["path"])
+
+	if model_scene and model_parent:
+		var model = model_scene.instantiate()
+		model_parent.add_child(model)
+
+
 func _physics_process(delta: float) -> void:
 	if is_queued_for_deletion():
 		return
@@ -46,13 +68,16 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
 #Function called when climbing surfaces
 func climb() -> void:
 	velocity.y = climbing_velocity
 
+
 #Used to keep track of the amount of current enemies left in GameManager
 func _exit_tree() -> void:
 	Constants.game_manager.current_enemy_count -= 1
+
 
 func on_body_entered(body: Node3D) -> void:
 	if body is Enemy and body.name != name:
@@ -60,6 +85,7 @@ func on_body_entered(body: Node3D) -> void:
 	if body == Constants.game_manager.tower:
 		climbing = true	
 		return
+
 
 func on_body_exited(body: Node3D) -> void:
 	if body == Constants.game_manager.tower:
