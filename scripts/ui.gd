@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 		player.pitch -= event.screen_relative.y * sensitivity
 		player.pitch = clamp(player.pitch, -PI / 2, PI / 2)
 
-	if event is InputEventMouseButton and event.is_pressed():
+	if event is InputEventMouseButton and event.is_pressed() and not game_paused:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _ready() -> void:
@@ -97,12 +97,12 @@ func quit_game() -> void:
 	get_tree().quit()
 
 func _process(_delta: float) -> void:	
-	if Input.is_action_just_pressed("escape") and not game_paused:
-		pause_game()
-
 	if game_paused:
 		return
-
+		
+	if Input.is_action_just_pressed("escape") and not game_paused:
+		pause_game()
+	
 	update_cake_left()
 
 	var current_money: int = Constants.game_manager.bank
