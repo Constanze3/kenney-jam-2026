@@ -16,8 +16,20 @@ extends CharacterBody3D
 
 @export var direction: Vector2 = Vector2.ZERO
 
+@export var area: Area3D
+
 var enabled : bool
 var lock_movement: bool = false
+
+
+var hit_ground: bool = false
+
+func _ready() -> void:
+	area.body_entered.connect(func(body: Node3D):
+		if body.name == "Ground":
+			hit_ground = true
+	)
+	
 
 func get_sensitivity() -> float:
 	return sensitivity * sensitivity_multiplier
@@ -49,4 +61,5 @@ func _physics_process(delta: float) -> void:
 		velocity.z = movement.z
 	
 
-	move_and_slide()	
+	move_and_slide()
+

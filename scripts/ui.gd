@@ -16,6 +16,11 @@ signal set_enabled(setting: bool)
 
 @export var wave_indicator_label: Label
 
+@export var end_game_panel: Panel
+@export var cake_eaten_label: Label
+@export var cake_protected_label: Label
+@export var death_label: Label
+
 var started: bool = false
 var paused_once: bool
 
@@ -70,6 +75,11 @@ func _ready() -> void:
 
 	build_mode = Constants.game_manager.player.build_mode
 
+	end_game_panel.hide()
+	cake_protected_label.hide()
+	cake_eaten_label.hide()
+	death_label.hide()
+
 	update_hint()
 	update_cake_left()
 	update_wave_indicator()
@@ -123,6 +133,7 @@ func _process(_delta: float) -> void:
 	update_hint()
 	update_cake_left()
 	update_wave_indicator()
+	check_game_end()
 
 	var current_money: int = Constants.game_manager.bank
 
@@ -250,3 +261,22 @@ func update_wave_indicator() -> void:
 			wave_indicator_label.text = "First wave starts in %s seconds" % seconds
 	else:
 		wave_indicator_label.text = ""
+
+func check_game_end():
+	if Constants.game_manager.tower_health <= 0:
+		pause_game()
+		end_game_panel.show()
+		cake_eaten_label.show()
+		pause_menu_layer.visible = false
+
+	if Constants.game_manager.cake_protected:
+		pause_game()
+		end_game_panel.show()
+		cake_protected_label.show()
+		pause_menu_layer.visible = false
+
+	if Constants.game_manager.player.hit_ground:
+		pause_game()
+		end_game_panel.show()
+		death_label.show()		
+		pause_menu_layer.visible = false

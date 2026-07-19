@@ -19,6 +19,8 @@ extends Node
 @export var wave_data : JSON
 @export var bank : int
 
+var cake_protected: bool = false
+
 var before_wave: bool = true
 var wave_ended: bool = false
 
@@ -59,6 +61,7 @@ func start_wave() -> void:
 	wave_no += 1
 
 	if wave_no >= wave_data.data.size():
+		cake_protected = true
 		print("All waves finished!")
 		return
 	

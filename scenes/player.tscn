@@ -32,7 +32,10 @@ depth_draw_mode = 1
 shading_mode = 0
 albedo_color = Color(0.54955006, 0.3045, 0.87, 0.41568628)
 
-[node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "build_mode", "max_range_indicator")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_vt8ps"]
+size = Vector3(1, 1.2796631, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "build_mode", "max_range_indicator", "area")]
 collision_layer = 2147483664
 script = ExtResource("1_3vyb7")
 player_camera = NodePath("PlayerCamera")
@@ -41,6 +44,7 @@ max_range_indicator = NodePath("MaxRangeIndicator")
 sensitivity = 0.5
 movement_speed = 5.0
 jump_force = 3.0
+area = NodePath("Area3D")
 
 [node name="PlayerCamera" type="Camera3D" parent="." unique_id=1214775517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55117905, 0)
@@ -77,3 +81,9 @@ transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_tuyoq")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_fjrip")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=589782266]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=734157716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.74298096, 0)
+shape = SubResource("BoxShape3D_vt8ps")
