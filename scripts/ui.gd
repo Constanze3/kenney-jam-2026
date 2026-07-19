@@ -14,6 +14,8 @@ signal set_enabled(setting: bool)
 @export var pause_hint: Label
 @export var lock_hint: Label
 
+@export var wave_indicator_label: Label
+
 var started: bool = false
 var paused_once: bool
 
@@ -70,6 +72,7 @@ func _ready() -> void:
 
 	update_hint()
 	update_cake_left()
+	update_wave_indicator()
 	pause_game()
 
 	#Set up the hotbar prices when the game is getting started.
@@ -119,6 +122,7 @@ func _process(_delta: float) -> void:
 	
 	update_hint()
 	update_cake_left()
+	update_wave_indicator()
 
 	var current_money: int = Constants.game_manager.bank
 
@@ -222,7 +226,6 @@ func update_hint() -> void:
 	if not started:
 		return
 
-	var build_mode = Constants.game_manager.player.build_mode
 	if build_mode.enabled and not build_mode.locked_once:
 		lock_hint.show()
 		return
@@ -233,3 +236,17 @@ func update_hint() -> void:
 func hide_hint() -> void:
 	pause_hint.hide()
 	lock_hint.hide()
+
+func update_wave_indicator() -> void:
+	var game_manager = Constants.game_manager
+	if not game_manager.before_wave:
+		wave_indicator_label.text = "Wave %s" % game_manager.wave_no
+	elif is_instance_valid(game_manager.before_first_wave_timer):
+		var seconds = int(round(game_manager.before_first_wave_timer.time_left))
+
+		if game_manager.wave_no != -1:
+			wave_indicator_label.text = "Next wave starts in %s seconds" % seconds
+		else:
+			wave_indicator_label.text = "First wave starts in %s seconds" % seconds
+	else:
+		wave_indicator_label.text = ""

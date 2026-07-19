@@ -12,14 +12,17 @@ extends Node
 
 @export_category("Enemy/Wave")
 @export var enemies: Array[Enemy] = []
-@export var wave_no : int
+@export var wave_no : int = -1
 @export var current_enemy_count : int
 @export var wave_enemy_count : int
 @export var wait_timer : float
 @export var wave_data : JSON
 @export var bank : int
 
+var before_wave: bool = true
 var wave_ended: bool = false
+
+var before_first_wave_timer: SceneTreeTimer
 
 func _enter_tree() -> void:
 	Constants.game_manager = self
@@ -28,14 +31,12 @@ func _process(_delta: float) -> void:
 	if tower_health <= 0:
 		game_over()
 	
-	if current_enemy_count == 0 and !wave_ended:
+	if not before_wave and current_enemy_count == 0 and !wave_ended:
 		end_wave()
 		wave_ended = true
-	
 
 func _ready() -> void:
-	tower_health = max_tower_health
-	wave_no = 0
+	tower_health = max_tower_health	
 	start_wave()
 
 func can_spend_money(amound: int) -> bool:
@@ -50,6 +51,13 @@ func try_spend_money(amount: int) -> bool:
 	return true
 
 func start_wave() -> void:
+	before_wave = true
+	before_first_wave_timer = get_tree().create_timer(15.0)
+	await before_first_wave_timer.timeout
+	before_wave = false
+
+	wave_no += 1
+
 	if wave_no >= wave_data.data.size():
 		print("All waves finished!")
 		return
@@ -68,7 +76,6 @@ func start_wave() -> void:
 		enemy_spawner.spawn_enemies(enemy_name, enemy_count)
 	
 	current_enemy_count = wave_enemy_count
-	wave_no += 1
 	wave_ended = false
 	
 	return
