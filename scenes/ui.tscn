@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://byr24hfvl0wc1" path="res://assets/cursor_tile/tile_0189.png" id="3_6rmj2"]
 [ext_resource type="Texture2D" uid="uid://csdiimu6nenff" path="res://assets/color_textures/blue_texture.tres" id="3_8dubc"]
 [ext_resource type="Texture2D" uid="uid://c73geaq5xbjnv" path="res://assets/cursor_tile/tile_0106.png" id="3_p7vwb"]
+[ext_resource type="PackedScene" uid="uid://c5bux37y7mmms" path="res://scenes/bank_popup.tscn" id="3_qsv74"]
 [ext_resource type="Texture2D" uid="uid://bak7t5q2lfikk" path="res://assets/color_textures/orange_texture.tres" id="4_p7vwb"]
 [ext_resource type="Texture2D" uid="uid://ddlnmyl4bhgws" path="res://assets/cursor_tile/tile_0126.png" id="4_vdcm2"]
 [ext_resource type="FontFile" uid="uid://bdbeum1w02tkw" path="res://assets/fonts/CutePixel.ttf" id="4_vsj0x"]
@@ -48,7 +49,7 @@ subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_vdcm2"]
 
-[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
+[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "background_bar", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,20 +61,22 @@ script = ExtResource("1_nt7q6")
 turret_data = ExtResource("2_8dubc")
 hotbar = NodePath("Hotbar")
 desc_bar = NodePath("Hotbar/Description")
+background_bar = NodePath("Hotbar/BackgroundHotBar")
 continue_game_button = NodePath("CanvasLayer/Menu/Button")
 pause_menu_layer = NodePath("CanvasLayer")
 sensitivity_slider = NodePath("CanvasLayer/Menu/SensSlider")
 quit_game_button = NodePath("CanvasLayer/Menu/Button2")
 sens_label = NodePath("CanvasLayer/Menu/SensSlider/Label")
 money_label = NodePath("TextureRect/MoneyLabel")
+bank_popup_scene = ExtResource("3_qsv74")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1337567701]
 modulate = Color(0.9553881, 0.77334607, 0, 1)
 layout_mode = 0
-offset_left = 13.01754
+offset_left = 13.017539
 offset_top = 12.0
-offset_right = 80.10794
-offset_bottom = 79.0904
+offset_right = 60.080956
+offset_bottom = 59.063416
 texture = ExtResource("3_6rmj2")
 expand_mode = 1
 

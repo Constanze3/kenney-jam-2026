@@ -6,21 +6,24 @@ signal set_enabled(setting: bool)
 @export var turret_data : JSON
 @export var hotbar : ItemList
 @export var desc_bar : ItemList
+@export var background_bar : ItemList
 @export var slide_speed : float = 10.0
-
-var build_mode: BuildMode
-
 @export_category("Pause Menu")
 @export var continue_game_button : Button
 @export var pause_menu_layer : CanvasLayer
 @export var sensitivity_slider : HSlider
 @export var quit_game_button : Button
 @export var sens_label : Label
+@export_category("Money Label")
 @export var money_label : Label
-
+@export var bank_popup_scene: PackedScene
+@export var popup_travel := Vector2(0, -40)
+@export var popup_duration := 0.8
+@export var popup_spread := PI / 6
+var previous_money: int
 var selected = -1
 var game_paused = false
-
+var build_mode: BuildMode
 var desc_tween: Tween
 
 func _ready() -> void:
@@ -39,6 +42,8 @@ func _ready() -> void:
 	#Set up the hotbar prices when the game is getting started.
 	for i in 7:
 		hotbar.set_item_text(i, str(turret_data.data[i]["cost"]) + "$")
+	update_hotbar_colors()
+		
 	var stat_colors: Array[Color] = [
 
 		Color.RED,
@@ -50,6 +55,9 @@ func _ready() -> void:
 	for i in stat_colors.size():
 		desc_bar.set_item_icon_modulate(i, stat_colors[i])
 		desc_bar.set_item_custom_fg_color(i, stat_colors[i])
+	
+	previous_money = Constants.game_manager.bank
+	money_label.text = str(previous_money)
 
 func change_sensitivity(value: float) -> void:
 	player.sensitivity = value
@@ -79,13 +87,54 @@ func _process(_delta: float) -> void:
 
 	if game_paused:
 		return
-	#I know this shouldnt be here, I am lazy
-	money_label.text = str(Constants.game_manager.bank)
 
+	var current_money: int = Constants.game_manager.bank
+
+	if current_money != previous_money:
+		var difference := current_money - previous_money
+		if difference > 0:
+			show_money_popup(difference)
+		previous_money = current_money
+		money_label.text = str(current_money)
+		update_hotbar_colors()
 
 	for i in range(1, 8):
 		if Input.is_action_just_pressed(str(i)):
 			select_slot(i - 1)
+	
+func update_hotbar_colors() -> void:
+	var bank := Constants.game_manager.bank
+	for i in range(7):
+		var cost: int = turret_data.data[i]["cost"]	
+			
+		if bank >= cost:
+			hotbar.set_item_custom_fg_color(i, Color.WHITE)
+			hotbar.set_item_custom_fg_color(i, Color.WHITE)
+			hotbar.set_item_icon_modulate(i, Color.WHITE)
+			background_bar.set_item_icon_modulate(i, background_bar.get_item_icon_modulate(i).lightened(0.35))
+		else:
+			hotbar.set_item_custom_fg_color(i, Color.GRAY)
+			hotbar.set_item_custom_fg_color(i, Color.BLACK)
+			hotbar.set_item_icon_modulate(i, Color.BLACK)
+			background_bar.set_item_icon_modulate(i, background_bar.get_item_icon_modulate(i).darkened(0.35))
+
+
+func show_money_popup(amount: int) -> void:
+	var popup := bank_popup_scene.instantiate() as Label
+	add_child(popup)
+
+	# Spawn it beside the money counter.
+	popup.global_position = Vector2(
+		money_label.global_position.x + money_label.size.x + 10.0,
+		money_label.global_position.y
+	)
+
+	popup.show_value(
+		amount,
+		popup_travel,
+		popup_duration,
+		popup_spread
+	)
 
 func select_slot(index: int) -> void:
 	if selected == index:
