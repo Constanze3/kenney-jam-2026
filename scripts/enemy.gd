@@ -40,6 +40,14 @@ func set_enemy_data(data : Dictionary) -> void:
 	if model_scene and model_parent:
 		var model = model_scene.instantiate()
 		model_parent.add_child(model)
+		var animation_player = model.find_child("AnimationPlayer", true, false)
+		if animation_player:
+			for animation_name in animation_player.get_animation_list():
+				if animation_name != "RESET":
+					animation_player.get_animation(animation_name).loop_mode = Animation.LOOP_LINEAR
+					animation_player.play(animation_name)
+					break
+
 
 func _process(_delta: float) -> void:
 	if health <= 0:
