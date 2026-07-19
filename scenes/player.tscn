@@ -12,7 +12,7 @@ render_priority = 1
 transparency = 1
 depth_draw_mode = 1
 shading_mode = 0
-albedo_color = Color(0.54955006, 0.3045, 0.87, 0.41568628)
+albedo_color = Color(0.46108449, 0.21754056, 0.7578007, 0.41568628)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qhqgy"]
 flip_faces = true
@@ -24,6 +24,14 @@ shading_mode = 0
 albedo_color = Color(0.54955006, 0.3045, 0.87, 0.41568628)
 
 [sub_resource type="SphereMesh" id="SphereMesh_fjrip"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuyoq"]
+render_priority = -1
+transparency = 1
+cull_mode = 1
+depth_draw_mode = 1
+shading_mode = 0
+albedo_color = Color(0.54955006, 0.3045, 0.87, 0.41568628)
 
 [node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "build_mode", "max_range_indicator")]
 collision_layer = 2147483664
@@ -65,8 +73,14 @@ cast_shadow = 0
 mesh = SubResource("SphereMesh_qhqgy")
 script = ExtResource("4_qlg0r")
 
+[node name="MaxRangeIndicator2" type="MeshInstance3D" parent="MaxRangeIndicator" unique_id=1539440388]
+transform = Transform3D(1.0200999, 0, 0, 0, 1.0200999, 0, 0, 0, 1.0200999, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_qlg0r")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_fjrip")
+
 [node name="MaxRangeIndicator" type="MeshInstance3D" parent="MaxRangeIndicator" unique_id=506687511]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_qlg0r")
+material_override = SubResource("StandardMaterial3D_tuyoq")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_fjrip")

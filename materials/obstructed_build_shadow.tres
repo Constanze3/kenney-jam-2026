@@ -3,5 +3,6 @@
 [resource]
 render_priority = -1
 transparency = 1
+depth_draw_mode = 1
 albedo_color = Color(0.82, 0.18860002, 0.23069333, 0.7647059)
 disable_receive_shadows = true

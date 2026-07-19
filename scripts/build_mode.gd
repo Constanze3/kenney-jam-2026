@@ -36,6 +36,7 @@ func exit_build_mode() -> void:
 	if shadow:
 		shadow.queue_free()
 
+	Constants.game_manager.player.max_range_indicator.hide()
 	set_enabled(false)
 
 func set_enabled(value: bool):

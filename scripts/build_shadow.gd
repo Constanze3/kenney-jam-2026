@@ -21,7 +21,7 @@ func setup(_meshes: Array[MeshInstance3D], range_indicator_radius: float) -> voi
 
 	area_entered.connect(func(_body: Node3D): colliding += 1)
 	area_exited.connect(func(_body: Node3D): colliding -= 1)
-
+	
 	max_range_indicator.setup(range_indicator_radius, object)
 	show_as_placable()
 
@@ -46,6 +46,4 @@ func hide_shadow() -> void:
 	max_range_indicator.hide()
 
 func _exit_tree() -> void:
-	if max_range_indicator:
-		max_range_indicator.hide()
 	object.queue_free()
