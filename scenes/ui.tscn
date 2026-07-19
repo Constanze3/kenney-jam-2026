@@ -126,34 +126,25 @@ text = "Cake left: 100%"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1337567701]
 modulate = Color(0.9553881, 0.77334607, 0, 1)
-layout_mode = 0
-offset_left = 13.017479
-offset_top = 13.0
-offset_right = 60.080894
-offset_bottom = 60.063416
+layout_mode = 1
+offset_left = 18.037327
+offset_top = 21.000002
+offset_right = 65.10074
+offset_bottom = 68.063416
 texture = ExtResource("3_6rmj2")
 expand_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="MoneyLabel" type="Label" parent="." unique_id=713856705]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0582383
-anchor_bottom = 0.5
-offset_left = -1081.9055
-offset_top = -311.0135
-offset_right = -1014.8152
-offset_bottom = -264.0135
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 71.09579
+offset_top = 21.0
+offset_right = 138.18613
+offset_bottom = 68.0
 rotation = 0.0002774724
 theme_override_constants/outline_size = 0
 text = "asd"
 label_settings = SubResource("LabelSettings_7ktgp")
-metadata/_edit_use_anchors_ = true
 
 [node name="Hotbar" type="ItemList" parent="." unique_id=863928529]
 clip_contents = false
@@ -429,17 +420,17 @@ text = "Sensivity"
 
 [node name="LockHintLabel" type="Label" parent="." unique_id=1548599319]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 23.808167
-offset_top = -523.0
-offset_right = 570.5448
-offset_bottom = -500.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -563.2067
+offset_top = -204.0
+offset_right = -16.470093
+offset_bottom = -181.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("4_vsj0x")
 theme_override_font_sizes/font_size = 22
@@ -447,17 +438,17 @@ text = "Hold right mouse button to lock turret placement while you move"
 
 [node name="PauseHintLabel" type="Label" parent="." unique_id=1040221749]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 420.3424
-offset_top = -523.0
-offset_right = 563.3425
-offset_bottom = -500.0
-grow_horizontal = 2
-grow_vertical = 0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -159.47015
+offset_top = -204.0
+offset_right = -16.470093
+offset_bottom = -181.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("4_vsj0x")
 theme_override_font_sizes/font_size = 22

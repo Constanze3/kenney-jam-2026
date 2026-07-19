@@ -8,17 +8,28 @@
 [ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="5_ir02f"]
 [ext_resource type="JSON" path="res://data/turrets.json" id="6_iup8r"]
 [ext_resource type="PackedScene" uid="uid://maen18bhyk43" path="res://scenes/player.tscn" id="7_5gws5"]
+[ext_resource type="Script" uid="uid://dokpe2ud1k2vq" path="res://scripts/turret/turret.gd" id="7_eabnk"]
+[ext_resource type="PackedScene" uid="uid://cu32g0o4rjh21" path="res://scenes/bullet.tscn" id="8_jvtdb"]
 [ext_resource type="Texture2D" uid="uid://d26dikvntj27w" path="res://assets/castle_kit/Textures/colormap.png" id="8_u3ray"]
 [ext_resource type="PackedScene" uid="uid://c04ejqw8meqcd" path="res://scenes/food.tscn" id="9_5kiww"]
+[ext_resource type="AudioStream" uid="uid://copymaoabbo6p" path="res://audio/turret/gun-t-sound.mp3" id="9_kc1s7"]
+[ext_resource type="Script" uid="uid://b0ml6anyetn0h" path="res://scripts/build_shadow.gd" id="10_1ghj8"]
 [ext_resource type="PackedScene" uid="uid://v0qngjqibgno" path="res://assets/castle_kit/bridge-draw.glb" id="10_6g5oa"]
 [ext_resource type="PackedScene" uid="uid://rawye2vhdi67" path="res://assets/forest_kit/Models/GLB format/tree.glb" id="10_rw3vc"]
 [ext_resource type="PackedScene" uid="uid://dy5ssymsaoo5a" path="res://assets/forest_kit/Models/GLB format/tree-high.glb" id="11_3f7iu"]
+[ext_resource type="Material" uid="uid://tckj3aydj32u" path="res://materials/placable_build_shadow.tres" id="11_b1yv6"]
 [ext_resource type="PackedScene" uid="uid://c7ci6jopinvro" path="res://assets/forest_kit/Models/GLB format/patch-grass.glb" id="12_eabnk"]
+[ext_resource type="Material" uid="uid://cj65iqu363cf1" path="res://materials/obstructed_build_shadow.tres" id="12_kcj8f"]
 [ext_resource type="PackedScene" uid="uid://kkipsq2t4ocy" path="res://assets/forest_kit/Models/GLB format/rocks-high.glb" id="13_jvtdb"]
+[ext_resource type="PackedScene" uid="uid://be7unxjfroont" path="res://assets/guns/blaster-c.glb" id="13_k06fq"]
+[ext_resource type="PackedScene" uid="uid://csfrbaubgqokb" path="res://assets/graveyard/cross-column.glb" id="14_iw6es"]
 [ext_resource type="PackedScene" uid="uid://tqwa81hvujpc" path="res://assets/forest_kit/Models/GLB format/rocks-ramp.glb" id="14_kc1s7"]
 [ext_resource type="PackedScene" uid="uid://cbwcwou7s6nt2" path="res://assets/forest_kit/Models/GLB format/stones.glb" id="15_1ghj8"]
 [ext_resource type="PackedScene" uid="uid://ceqccylidcuq5" path="res://assets/forest_kit/Models/GLB format/plant.glb" id="16_b1yv6"]
 [ext_resource type="AudioStream" uid="uid://cgvpfgymk82ad" path="res://audio/music.mp3" id="17_04eeb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5dq4"]
+size = Vector3(0.3088379, 1.1816406, 0.44299316)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -28,6 +39,7 @@ sky_material = SubResource("ProceduralSkyMaterial_qlnur")
 [sub_resource type="Environment" id="Environment_a08nb"]
 background_mode = 2
 sky = SubResource("Sky_pq12f")
+fog_enabled = true
 fog_density = 0.0168
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a08nb"]
@@ -83,6 +95,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_glgii")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6g5oa"]
+points = PackedVector3Array(-0.23820257, 0.3899824, -0.4124175, -0.21601385, 0, -0.37414697, -0.4320277, 0, -8.073449e-05, -0.4762187, 0.3899824, -8.073449e-05, -0.23820257, 0.46, -0.4124175, 0.23801613, 0.3899824, -0.4124175, 0.21592063, 0, -0.37414697, -0.21601385, 0, 0.3740662, -0.23820257, 0.3899824, 0.4124175, -0.4762187, 0.46, -8.073449e-05, 0.23801613, 0.46, -0.4124175, 0.4762187, 0.3899824, -8.073449e-05, 0.43193448, 0, -8.073449e-05, 0.21592063, 0, 0.3740662, -0.23820257, 0.46, 0.4124175, 0.23801613, 0.3899824, 0.4124175, 0.4762187, 0.46, -8.073449e-05, 0.23801613, 0.46, 0.4124175)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiugw"]
 resource_name = "colormap"
 cull_mode = 2
@@ -125,7 +140,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bpaht")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iywne"]
-height = 1.7691919
+height = 1.3099737
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53rd5"]
 resource_name = "colormap"
@@ -166,17 +181,44 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rc1yw")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5gws5"]
+size = Vector3(10.481201, 0.524353, 10.394287)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ir02f"]
 size = Vector3(10.481201, 0.524353, 10.394287)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iup8r"]
-size = Vector3(6.4765625, 0.477417, 6.201172)
+[sub_resource type="BoxShape3D" id="BoxShape3D_u3ray"]
+size = Vector3(6.269287, 0.477417, 6.35553)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pq12f"]
-size = Vector3(3.1894531, 1.128891, 17.912357)
+[sub_resource type="BoxShape3D" id="BoxShape3D_5kiww"]
+size = Vector3(6.269287, 0.477417, 6.35553)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iup8r"]
+size = Vector3(6.269287, 0.477417, 6.35553)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rw3vc"]
+size = Vector3(6.269287, 0.477417, 6.35553)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ghj8"]
+size = Vector3(3.1894531, 1.128891, 20.761185)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3f7iu"]
+size = Vector3(3.1894531, 1.128891, 20.761185)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6g5oa"]
 size = Vector3(1.4658203, 0.26591492, 23)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eabnk"]
+size = Vector3(1.4658203, 0.26591492, 23)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jvtdb"]
+size = Vector3(1, 1, 9.969238)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kc1s7"]
+size = Vector3(1, 1, 9.969238)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a08nb"]
+size = Vector3(1, 1, 9.969238)
 
 [node name="PixelNode" type="Node3D" unique_id=1800430208]
 
@@ -200,7 +242,7 @@ render_target_update_mode = 4
 
 [node name="Game" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=2062472101 node_paths=PackedStringArray("tower", "enemy_spawner", "player", "turret_spawner")]
 script = ExtResource("1_mwvjc")
-tower = NodePath("Tower")
+tower = NodePath("TowerLow")
 enemy_spawner = NodePath("EnemySpawner")
 player = NodePath("Player")
 turret_spawner = NodePath("TurretSpawner")
@@ -219,6 +261,176 @@ turret_scene = ExtResource("5_ir02f")
 turrets_json = ExtResource("6_iup8r")
 metadata/_custom_type_script = "uid://qskg7gstqdth"
 
+[node name="Turrets" type="Node3D" parent="SubViewportContainer/SubViewport/Game" unique_id=1098334184]
+
+[node name="Turret" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets" unique_id=1007567348 node_paths=PackedStringArray("model_parent", "build_shadow", "turret_head", "shot_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9043856, 5.7605247, -9.875085)
+script = ExtResource("7_eabnk")
+bullet_scene = ExtResource("8_jvtdb")
+shot_sound = ExtResource("9_kc1s7")
+model_parent = NodePath("TurretHead/Gun")
+build_shadow = NodePath("BuildShadow")
+turret_head = NodePath("TurretHead")
+damage = 12.0
+seconds_between_shots = 0.5
+inaccuracy = 0.1
+max_range = 22.0
+bullet_speed = 0.6
+shot_point = NodePath("TurretHead/ShotPoint")
+
+[node name="BuildShadow" type="Area3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret" unique_id=1070267247 node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003653407, 0)
+script = ExtResource("10_1ghj8")
+placable_material = ExtResource("11_b1yv6")
+obstructed_material = ExtResource("12_kcj8f")
+object = NodePath("..")
+metadata/_custom_type_script = "uid://b0ml6anyetn0h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret/BuildShadow" unique_id=1491303938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020874023, 0.58203125, 0.0051879883)
+shape = SubResource("BoxShape3D_g5dq4")
+
+[node name="TurretHead" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret" unique_id=1696550809]
+transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1169996, -0.01017198)
+
+[node name="ShotPoint" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret/TurretHead" unique_id=1464069359]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949, -1.0652034)
+
+[node name="Gun" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret/TurretHead" unique_id=1823782857]
+transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 0, 0, -0.1648483)
+
+[node name="blaster-c2" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret/TurretHead/Gun" unique_id=431496132 instance=ExtResource("13_k06fq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.054949284)
+
+[node name="TurretBase" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret" unique_id=1778716703 instance=ExtResource("14_iw6es")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.003653407, 0)
+
+[node name="Turret2" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets" unique_id=916328653 node_paths=PackedStringArray("model_parent", "build_shadow", "turret_head", "shot_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.125013, 5.7605257, -15.198523)
+script = ExtResource("7_eabnk")
+bullet_scene = ExtResource("8_jvtdb")
+shot_sound = ExtResource("9_kc1s7")
+model_parent = NodePath("TurretHead/Gun")
+build_shadow = NodePath("BuildShadow")
+turret_head = NodePath("TurretHead")
+damage = 12.0
+seconds_between_shots = 0.5
+inaccuracy = 0.1
+max_range = 22.0
+bullet_speed = 0.6
+shot_point = NodePath("TurretHead/ShotPoint")
+
+[node name="BuildShadow" type="Area3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2" unique_id=1671463139 node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003653407, 0)
+script = ExtResource("10_1ghj8")
+placable_material = ExtResource("11_b1yv6")
+obstructed_material = ExtResource("12_kcj8f")
+object = NodePath("..")
+metadata/_custom_type_script = "uid://b0ml6anyetn0h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2/BuildShadow" unique_id=1222765951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020874023, 0.58203125, 0.0051879883)
+shape = SubResource("BoxShape3D_g5dq4")
+
+[node name="TurretHead" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2" unique_id=58736197]
+transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1169996, -0.01017198)
+
+[node name="ShotPoint" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2/TurretHead" unique_id=624121804]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949, -1.0652034)
+
+[node name="Gun" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2/TurretHead" unique_id=480621588]
+transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 0, 0, -0.1648483)
+
+[node name="blaster-c2" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2/TurretHead/Gun" unique_id=1491021633 instance=ExtResource("13_k06fq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.054949284)
+
+[node name="TurretBase" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret2" unique_id=116462431 instance=ExtResource("14_iw6es")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.003653407, 0)
+
+[node name="Turret3" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets" unique_id=804677308 node_paths=PackedStringArray("model_parent", "build_shadow", "turret_head", "shot_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.883975, 5.7605247, 15.298769)
+script = ExtResource("7_eabnk")
+bullet_scene = ExtResource("8_jvtdb")
+shot_sound = ExtResource("9_kc1s7")
+model_parent = NodePath("TurretHead/Gun")
+build_shadow = NodePath("BuildShadow")
+turret_head = NodePath("TurretHead")
+damage = 12.0
+seconds_between_shots = 0.5
+inaccuracy = 0.1
+max_range = 22.0
+bullet_speed = 0.6
+shot_point = NodePath("TurretHead/ShotPoint")
+
+[node name="BuildShadow" type="Area3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3" unique_id=836115374 node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003653407, 0)
+script = ExtResource("10_1ghj8")
+placable_material = ExtResource("11_b1yv6")
+obstructed_material = ExtResource("12_kcj8f")
+object = NodePath("..")
+metadata/_custom_type_script = "uid://b0ml6anyetn0h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3/BuildShadow" unique_id=1865256205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020874023, 0.58203125, 0.0051879883)
+shape = SubResource("BoxShape3D_g5dq4")
+
+[node name="TurretHead" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3" unique_id=2009367045]
+transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1169996, -0.01017198)
+
+[node name="ShotPoint" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3/TurretHead" unique_id=1268170712]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949, -1.0652034)
+
+[node name="Gun" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3/TurretHead" unique_id=1592939283]
+transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 0, 0, -0.1648483)
+
+[node name="blaster-c2" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3/TurretHead/Gun" unique_id=1985172568 instance=ExtResource("13_k06fq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.054949284)
+
+[node name="TurretBase" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret3" unique_id=132442293 instance=ExtResource("14_iw6es")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.003653407, 0)
+
+[node name="Turret4" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets" unique_id=179904987 node_paths=PackedStringArray("model_parent", "build_shadow", "turret_head", "shot_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6633472, 5.7605257, 9.975332)
+script = ExtResource("7_eabnk")
+bullet_scene = ExtResource("8_jvtdb")
+shot_sound = ExtResource("9_kc1s7")
+model_parent = NodePath("TurretHead/Gun")
+build_shadow = NodePath("BuildShadow")
+turret_head = NodePath("TurretHead")
+damage = 12.0
+seconds_between_shots = 0.5
+inaccuracy = 0.1
+max_range = 22.0
+bullet_speed = 0.6
+shot_point = NodePath("TurretHead/ShotPoint")
+
+[node name="BuildShadow" type="Area3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4" unique_id=1710233077 node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003653407, 0)
+script = ExtResource("10_1ghj8")
+placable_material = ExtResource("11_b1yv6")
+obstructed_material = ExtResource("12_kcj8f")
+object = NodePath("..")
+metadata/_custom_type_script = "uid://b0ml6anyetn0h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4/BuildShadow" unique_id=1730884522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020874023, 0.58203125, 0.0051879883)
+shape = SubResource("BoxShape3D_g5dq4")
+
+[node name="TurretHead" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4" unique_id=2062000451]
+transform = Transform3D(1.2499999, 0, 0, 0, 1, 0, 0, 0, 1.2499999, -0.03759384, 1.1169996, -0.01017198)
+
+[node name="ShotPoint" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4/TurretHead" unique_id=890395644]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0.21222949, -1.0652034)
+
+[node name="Gun" type="Node3D" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4/TurretHead" unique_id=816566114]
+transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 0, 0, -0.1648483)
+
+[node name="blaster-c2" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4/TurretHead/Gun" unique_id=1483473589 instance=ExtResource("13_k06fq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.054949284)
+
+[node name="TurretBase" parent="SubViewportContainer/SubViewport/Game/Turrets/Turret4" unique_id=639290814 instance=ExtResource("14_iw6es")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0.003653407, 0)
+
 [node name="Player" parent="SubViewportContainer/SubViewport/Game" unique_id=432607406 instance=ExtResource("7_5gws5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0830936, 26.331724, -0.040649414)
 collision_mask = 17
@@ -230,34 +442,39 @@ transform = Transform3D(1, 0, 0, 0, 0.3843015, 0.9232077, 0, -0.9232077, 0.38430
 environment = SubResource("Environment_a08nb")
 
 [node name="Ground" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game" unique_id=313451473]
-collision_layer = 5
 physics_material_override = SubResource("PhysicsMaterial_a08nb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Ground" unique_id=1207242884]
-transform = Transform3D(0.9979259, 0, 0, 0, 0.9979259, 0, 0, 0, 0.9979259, 0.13185883, -0.027938418, 0.030139923)
+transform = Transform3D(0.9979259, 0, 0, 0, 0.9979259, 0, 0, 0, 0.9979259, 0.36235237, -0.17419392, -3.1131644)
 mesh = SubResource("BoxMesh_a08nb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Ground" unique_id=1055713341]
 shape = SubResource("BoxShape3D_yqjtg")
 
-[node name="Tower" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game" unique_id=1875714534]
+[node name="TowerHigh" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game" unique_id=536302157]
 collision_layer = 5
 
-[node name="tower-hexagon-mid" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Tower" unique_id=553346273]
+[node name="tower-hexagon-mid" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/TowerHigh" unique_id=2005925983]
 transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0.027793884, 17.481977, -0.0415864)
 mesh = SubResource("ArrayMesh_kjbdy")
 
-[node name="tower-base" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Tower" unique_id=1639800659]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/TowerHigh" unique_id=1278099547]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0.027793884, 17.481977, -0.0415864)
+shape = SubResource("ConvexPolygonShape3D_6g5oa")
+
+[node name="Food" parent="SubViewportContainer/SubViewport/Game/TowerHigh" unique_id=1259411450 instance=ExtResource("9_5kiww")]
+transform = Transform3D(4.69, 0, 0, 0, 4.69, 0, 0, 0, 4.69, 0, 23.453, 0)
+
+[node name="TowerLow" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game" unique_id=1875714534]
+
+[node name="tower-base" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/TowerLow" unique_id=1639800659]
 transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 0.454, 0)
 mesh = SubResource("ArrayMesh_4yyat")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Tower" unique_id=1049603325]
-transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 11.953748, 0)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/TowerLow" unique_id=1049603325]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 8.96883, 0)
 shape = SubResource("CylinderShape3D_iywne")
 debug_color = Color(0, 0.5950001, 0.7, 1)
-
-[node name="Food" parent="SubViewportContainer/SubViewport/Game/Tower" unique_id=1259411450 instance=ExtResource("9_5kiww")]
-transform = Transform3D(4.69, 0, 0, 0, 4.69, 0, 0, 0, 4.69, 0, 23.453, 0)
 
 [node name="Environment" type="Node3D" parent="SubViewportContainer/SubViewport/Game" unique_id=1406378465]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -762,102 +979,162 @@ transform = Transform3D(0.5014445, 0, 0.86519027, 0, 1, 0, -0.86519027, 0, 0.501
 [node name="plant4" parent="SubViewportContainer/SubViewport/Game/Environment/Plants" unique_id=732838578 instance=ExtResource("16_b1yv6")]
 transform = Transform3D(0.5987443, 0, 0.8009404, 0, 1, 0, -0.8009404, 0, 0.5987443, 6.6839924, 0.08905554, 2.5889983)
 
-[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport/Game" unique_id=1803434996]
+[node name="MiniTowers" type="Node3D" parent="SubViewportContainer/SubViewport/Game" unique_id=1803434996]
 
-[node name="MiniTower1" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=2091336011]
-collision_layer = 21
+[node name="MiniTower1" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=2091336011]
+collision_layer = 20
 
-[node name="tower-square-mid-open-simple1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower1" unique_id=566572054]
+[node name="tower-square-mid-open-simple1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower1" unique_id=566572054]
 transform = Transform3D(11.41, 0, 0, 0, -18.76564, 1.7228618e-06, 0, -2.8335328e-06, -11.409999, 0, 16.448, 24.633)
 mesh = SubResource("ArrayMesh_303yn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower1" unique_id=987886572]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower1" unique_id=987886572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0040283203, 16.175468, 24.586843)
-shape = SubResource("BoxShape3D_ir02f")
+shape = SubResource("BoxShape3D_5gws5")
 debug_color = Color(0, 0.5950001, 0.7, 1)
 
-[node name="MiniTower2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=485721723]
-collision_layer = 21
+[node name="MiniTower2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=485721723]
+collision_layer = 20
 
-[node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower2" unique_id=961873345]
+[node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower2" unique_id=961873345]
 transform = Transform3D(11.41, 0, 0, 0, -18.766, 1.7228621e-06, 0, -2.8335874e-06, -11.41, 0, 16.448, -24.633)
 mesh = SubResource("ArrayMesh_303yn")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower2" unique_id=431399187]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower2" unique_id=431399187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004, 16.175, -24.587)
 shape = SubResource("BoxShape3D_ir02f")
 debug_color = Color(0, 0.5950001, 0.7, 1)
 
-[node name="MiniTower3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=787567389]
+[node name="MiniTower3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=787567389]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-collision_layer = 21
-
-[node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower3" unique_id=402467201]
-transform = Transform3D(6.894788, 0, 0, 0, -6.0922065, 1.0162197e-06, 0, -9.1989756e-07, -6.7301188, 7.248484e-21, 5.774515, -16.986008)
-mesh = SubResource("ArrayMesh_303yn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower3" unique_id=763728467]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.521815, -16.986)
-shape = SubResource("BoxShape3D_iup8r")
-debug_color = Color(0, 0.5950001, 0.7, 1)
-
-[node name="MiniTower4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=896465680]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-collision_layer = 21
-
-[node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower4" unique_id=1411524453]
-transform = Transform3D(6.894788, 0, 0, 0, -6.0922065, 1.0162197e-06, 0, -9.1989756e-07, -6.7301188, 7.248484e-21, 5.774515, -16.986008)
-mesh = SubResource("ArrayMesh_303yn")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/MiniTower4" unique_id=989221244]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.521815, -16.986)
-shape = SubResource("BoxShape3D_iup8r")
-debug_color = Color(0, 0.5950001, 0.7, 1)
-
-[node name="bridge1" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=1954908492]
 collision_layer = 20
 
-[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge1" unique_id=1402314837 instance=ExtResource("10_6g5oa")]
-transform = Transform3D(-6.991421e-07, -8.528779e-08, -3.7354743, -6.7892647, 4.5966387, 0, 15.994508, 1.9511571, -1.6328275e-07, 0, 16.493689, 21.288712)
+[node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower3" unique_id=402467201]
+transform = Transform3D(6.894788, 0, 0, 0, -6.0922065, 1.0162197e-06, 0, -9.1989756e-07, -6.7301188, 7.248484e-21, 5.774515, -16.986008)
+mesh = SubResource("ArrayMesh_303yn")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge1" unique_id=453689380]
-transform = Transform3D(1, 0, 0, 0, 0.91913533, -0.3939419, 0, 0.3939419, 0.91913533, 1.1368684e-13, 19.414877, 14.47411)
-shape = SubResource("BoxShape3D_pq12f")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower3" unique_id=763728467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.521815, -16.986)
+shape = SubResource("BoxShape3D_u3ray")
+debug_color = Color(0, 0.5950001, 0.7, 1)
 
-[node name="bridge2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=119608485]
+[node name="MiniTower4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=896465680]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+collision_layer = 20
+
+[node name="tower-square-mid-open-simple2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower4" unique_id=1411524453]
+transform = Transform3D(6.894788, 0, 0, 0, -6.0922065, 1.0162197e-06, 0, -9.1989756e-07, -6.7301188, 7.248484e-21, 5.774515, -16.986008)
+mesh = SubResource("ArrayMesh_303yn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower4" unique_id=989221244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.521815, -16.986)
+shape = SubResource("BoxShape3D_5kiww")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="MiniTower5" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=57368415]
+collision_layer = 20
+
+[node name="tower-square-mid-open-simple3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower5" unique_id=1333502238]
+transform = Transform3D(-3.0138074e-07, -9.1989756e-07, -6.7301188, 0, -6.0922065, 1.0162197e-06, -6.894788, 4.021e-14, 2.9418283e-07, -7.4169807, 5.7745113, -12.625479)
+mesh = SubResource("ArrayMesh_303yn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower5" unique_id=1426113629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.415492, 5.521815, -12.643001)
+shape = SubResource("BoxShape3D_iup8r")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="MiniTower6" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=607751377]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 20
+
+[node name="tower-square-mid-open-simple3" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower6" unique_id=1658308255]
+transform = Transform3D(-3.0138074e-07, -9.1989756e-07, -6.7301188, 0, -6.0922065, 1.0162197e-06, -6.894788, 4.021e-14, 2.9418283e-07, -7.4169807, 5.7745113, -12.625479)
+mesh = SubResource("ArrayMesh_303yn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/MiniTower6" unique_id=1812569330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.415492, 5.521815, -12.567348)
+shape = SubResource("BoxShape3D_rw3vc")
+debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="bridge1" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=426945516]
+collision_layer = 20
+
+[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge1" unique_id=1402314837 instance=ExtResource("10_6g5oa")]
+transform = Transform3D(-8.14063e-07, -1.13437736e-07, -3.779907, -7.2557, 5.038932, -2.472213e-08, 19.783106, 1.8480916, -1.6460797e-07, 2.5379825e-07, 15.928974, 24.191824)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge1" unique_id=1061500652]
+transform = Transform3D(1, -4.0538133e-09, 1.6188935e-09, 4.3637565e-09, 0.9376534, -0.3475717, -1.08968834e-10, 0.3475717, 0.9376534, 1.9249455e-09, 19.300743, 14.891247)
+shape = SubResource("BoxShape3D_1ghj8")
+
+[node name="bridge2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=119608485]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 collision_layer = 20
 
-[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge2" unique_id=1324771664 instance=ExtResource("10_6g5oa")]
-transform = Transform3D(-6.991421e-07, -8.528779e-08, -3.779907, -6.7892647, 4.5966387, 0, 15.994508, 1.9511571, -1.6522496e-07, 0, 16.493689, 21.288712)
+[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge2" unique_id=1324771664 instance=ExtResource("10_6g5oa")]
+transform = Transform3D(-8.14063e-07, -1.13437736e-07, -3.779907, -7.2557, 5.038932, -2.472213e-08, 19.783106, 1.8480916, -1.6460797e-07, 2.5379825e-07, 15.928974, 24.191824)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge2" unique_id=1218574869]
-transform = Transform3D(1, 0, 0, 0, 0.91913533, -0.3939419, 0, 0.3939419, 0.91913533, 1.1368684e-13, 19.414877, 14.47411)
-shape = SubResource("BoxShape3D_pq12f")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge2" unique_id=1218574869]
+transform = Transform3D(1, -4.0538133e-09, 1.6188935e-09, 4.3637565e-09, 0.9376534, -0.3475717, -1.08968834e-10, 0.3475717, 0.9376534, 1.9249455e-09, 19.300743, 14.891247)
+shape = SubResource("BoxShape3D_3f7iu")
 
-[node name="bridge4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=1956173341]
+[node name="bridge4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=1956173341]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 collision_layer = 20
 
-[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge4" unique_id=423757539 instance=ExtResource("10_6g5oa")]
+[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge4" unique_id=423757539 instance=ExtResource("10_6g5oa")]
 transform = Transform3D(17.317282, -1.1459172, 0.97584295, 10.739709, 2.4653764, -2.9802322e-08, -10.012133, 0.66252136, 1.6878479, 19.750694, 16.440317, 4.7647815)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge4" unique_id=1919704064]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge4" unique_id=1919704064]
 transform = Transform3D(0.4851728, -0.4180229, -0.768026, 0, 0.87832797, -0.47805828, 0.874418, 0.23194097, 0.4261408, 10.508696, 10.876415, 10.033144)
 shape = SubResource("BoxShape3D_6g5oa")
 debug_color = Color(0, 0.5950001, 0.7, 1)
 
-[node name="bridge3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=1051354434]
+[node name="bridge3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=1051354434]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 collision_layer = 20
 
-[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge3" unique_id=934598791 instance=ExtResource("10_6g5oa")]
+[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge3" unique_id=934598791 instance=ExtResource("10_6g5oa")]
 transform = Transform3D(17.317282, -1.1459172, 0.97584295, 10.739709, 2.4653764, -2.9802322e-08, -10.012133, 0.66252136, 1.6878479, 19.750694, 16.440317, 4.7647815)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge3" unique_id=66596913]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge3" unique_id=66596913]
 transform = Transform3D(0.4851728, -0.4180229, -0.768026, 0, 0.87832797, -0.47805828, 0.874418, 0.23194097, 0.4261408, 10.508696, 10.876415, 10.033144)
-shape = SubResource("BoxShape3D_6g5oa")
+shape = SubResource("BoxShape3D_eabnk")
 debug_color = Color(0, 0.5950001, 0.7, 1)
+
+[node name="bridge5" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=384862846]
+collision_layer = 20
+
+[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge5" unique_id=2040338510 instance=ExtResource("10_6g5oa")]
+transform = Transform3D(7.182533, 0, 0, 0, 1, 0, 0, 0, 1, -10.253056, 5.554283, -12.544292)
+
+[node name="bridge-draw3" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge5" unique_id=900097116 instance=ExtResource("10_6g5oa")]
+transform = Transform3D(-4.2911816e-07, 0, 1, 0, 1, 0, -9.81708, 0, -4.371139e-08, -17.058126, 5.554283, -12.944227)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge5" unique_id=539187259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.02001, 5.2428083, -7.305896)
+shape = SubResource("BoxShape3D_jvtdb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge5" unique_id=1081474128]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.565857, 5.2428083, -12.550974)
+shape = SubResource("BoxShape3D_kc1s7")
+
+[node name="bridge6" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=724739023]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 20
+
+[node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge6" unique_id=203461367 instance=ExtResource("10_6g5oa")]
+transform = Transform3D(7.182533, 0, 0, 0, 1, 0, 0, 0, 1, -10.253056, 5.554283, -12.544292)
+
+[node name="bridge-draw3" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge6" unique_id=60753226 instance=ExtResource("10_6g5oa")]
+transform = Transform3D(-4.2911816e-07, 0, 1, 0, 1, 0, -9.81708, 0, -4.371139e-08, -17.058126, 5.554283, -12.944227)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge6" unique_id=19369351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.02001, 5.2428083, -7.305896)
+shape = SubResource("BoxShape3D_a08nb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge6" unique_id=1594169296]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.565857, 5.2428083, -12.550974)
+shape = SubResource("BoxShape3D_a08nb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Game" unique_id=1450971566]
 stream = ExtResource("17_04eeb")
