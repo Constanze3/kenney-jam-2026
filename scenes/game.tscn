@@ -175,6 +175,10 @@ metadata/_custom_type_script = "uid://qskg7gstqdth"
 
 [node name="Player" parent="." unique_id=432607406 instance=ExtResource("3_lnu2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0830936, 26.331724, -0.040649414)
+sensitivity_multiplier = null
+yaw = null
+pitch = null
+direction = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=131932769]
 transform = Transform3D(1, 0, 0, 0, 0.3843015, 0.9232077, 0, -0.9232077, 0.3843015, 0, 0.6362133, -20.306286)

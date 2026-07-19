@@ -15,6 +15,7 @@ extends Node3D
 @export var shadow: BuildShadow
 
 @export var can_place = false
+@export var lock_placed_object = false
 
 func _ready() -> void:
 	turret_spawner = Constants.game_manager.turret_spawner
@@ -25,7 +26,10 @@ func set_turret_to_place(turret_name: String) -> void:
 		shadow.queue_free()
 	
 	turret_to_place = turret_spawner.get_turret_data(turret_name)
+
 	shadow = turret_spawner.spawn_turret_build_shadow(turret_to_place)
+	update_build_shadow()
+
 	set_enabled(true)
 
 func exit_build_mode() -> void:
@@ -37,10 +41,18 @@ func exit_build_mode() -> void:
 func set_enabled(value: bool):
 	set_process(value)
 	set_physics_process(value)
+	lock_placed_object = false
+
 	enabled = value
 		
 func _physics_process(_delta: float) -> void:
-	show_build_shadow()
+	if enabled and Input.is_action_pressed("secondary_action"):
+		lock_placed_object = true 
+	else:
+		lock_placed_object = false
+	
+	if !lock_placed_object:
+		update_build_shadow()	
 
 	if Input.is_action_just_pressed("action") and can_place:
 		build_turret()
@@ -74,7 +86,7 @@ func should_show_shadow(raycast_result: Dictionary) -> bool:
 
 	return true
 
-func show_build_shadow():
+func update_build_shadow():
 	if not is_instance_valid(shadow):
 		return
 
@@ -112,5 +124,6 @@ func build_turret() -> void:
 		var new_turret = turret_spawner.spawn_turret(turret_to_place)
 		new_turret.global_position = shadow.global_position
 		new_turret.global_rotation = shadow.global_rotation
+		update_build_shadow()
 	else:
 		push_error("There should be enough money in the bank to build a turret here")

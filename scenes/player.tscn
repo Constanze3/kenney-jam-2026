@@ -3,17 +3,41 @@
 [ext_resource type="Script" uid="uid://cmqb0pf6vk4oj" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dys6hlsx82si3" path="res://scripts/build_mode.gd" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://daxr41b2wnlfg" path="res://scenes/ui.tscn" id="3_qlg0r"]
+[ext_resource type="Script" uid="uid://couireu1bj38" path="res://scripts/turret/max_range_indicator.gd" id="4_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8ps"]
 
-[node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "build_mode")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dqkch"]
+render_priority = 1
+transparency = 1
+depth_draw_mode = 1
+shading_mode = 0
+albedo_color = Color(0.54955006, 0.3045, 0.87, 0.41568628)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qhqgy"]
+flip_faces = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
+transparency = 1
+depth_draw_mode = 1
+shading_mode = 0
+albedo_color = Color(0.54955006, 0.3045, 0.87, 0.41568628)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fjrip"]
+
+[node name="Player" type="CharacterBody3D" unique_id=432607406 node_paths=PackedStringArray("player_camera", "build_mode", "max_range_indicator")]
 collision_layer = 2147483664
 script = ExtResource("1_3vyb7")
 player_camera = NodePath("PlayerCamera")
 build_mode = NodePath("BuildMode")
+max_range_indicator = NodePath("MaxRangeIndicator")
 sensitivity = 0.5
+sensitivity_multiplier = null
 movement_speed = 5.0
 jump_force = 3.0
+yaw = null
+pitch = null
+direction = null
 
 [node name="UI" parent="." unique_id=921849187 node_paths=PackedStringArray("player") instance=ExtResource("3_qlg0r")]
 player = NodePath("..")
@@ -33,3 +57,16 @@ script = ExtResource("2_g2els")
 build_range = 10.0
 raycast_collision_mask = 5
 can_place_on_mask = 4
+
+[node name="MaxRangeIndicator" type="MeshInstance3D" parent="." unique_id=1277603427]
+transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_dqkch")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_qhqgy")
+script = ExtResource("4_qlg0r")
+
+[node name="MaxRangeIndicator" type="MeshInstance3D" parent="MaxRangeIndicator" unique_id=506687511]
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_qlg0r")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_fjrip")

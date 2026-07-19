@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var player_camera: Camera3D
 @export var build_mode: BuildMode
+@export var max_range_indicator: MaxRangeIndicator
 
 @export var sensitivity: float = 1.0
 @export var sensitivity_multiplier: float = 0.005
@@ -15,9 +16,8 @@ extends CharacterBody3D
 
 @export var direction: Vector2 = Vector2.ZERO
 
-
 var enabled : bool
-
+var lock_movement: bool = false
 
 func get_sensitivity() -> float:
 	return sensitivity * sensitivity_multiplier
@@ -51,10 +51,11 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	var movement = transform.basis * Vector3(direction.x, 0, direction.y) * movement_speed
-	velocity.x = movement.x
-	velocity.z = movement.z
+	
+	if not lock_movement:
+		var movement = transform.basis * Vector3(direction.x, 0, direction.y) * movement_speed
+		velocity.x = movement.x
+		velocity.z = movement.z
 	
 
 	move_and_slide()	
