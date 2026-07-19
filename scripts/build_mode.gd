@@ -118,7 +118,7 @@ func update_build_shadow():
 	if not result.is_empty():
 		shadow.object.global_position = result["position"]
 
-	shadow.object.rotation.y = player.rotation.y - PI / 2
+	shadow.object.rotation.y = player.rotation.y 
 
 func build_turret() -> void:
 	if Constants.game_manager.try_spend_money(turret_to_place["cost"]):
