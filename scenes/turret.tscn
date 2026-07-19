@@ -19,6 +19,7 @@ model_parent = NodePath("TurretHead/Gun")
 build_shadow = NodePath("BuildShadow")
 turret_head = NodePath("TurretHead")
 inaccuracy = 0.1
+shot_sound_volume = -15.0
 shot_point = NodePath("TurretHead/ShotPoint")
 
 [node name="BuildShadow" type="Area3D" parent="." unique_id=1070267247 node_paths=PackedStringArray("object")]

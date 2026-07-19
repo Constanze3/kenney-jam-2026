@@ -60,6 +60,7 @@ can_place_on_mask = 4
 
 [node name="MaxRangeIndicator" type="MeshInstance3D" parent="." unique_id=1277603427]
 transform = Transform3D(20.2, 0, 0, 0, 20.2, 0, 0, 0, 20.2, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_dqkch")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_qhqgy")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5uwl2dp48qjo"]
 
 [ext_resource type="Script" uid="uid://cbmnohyuxaugi" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="AudioStream" uid="uid://boxqwwdeahylv" path="res://audio/enemy_death.mp3" id="2_md0e3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pq12f"]
 size = Vector3(1, 1, 1.0004883)
@@ -16,6 +17,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_md0e3")
 face_area = NodePath("FaceTrigger")
 model_parent = NodePath("Node3D")
+death_sound = ExtResource("2_md0e3")
 jump_force = 10.0
 climbing_velocity = 8.0
 

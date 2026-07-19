@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c04ejqw8meqcd" path="res://scenes/food.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://qskg7gstqdth" path="res://scripts/turret/turret_spawner.gd" id="7_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="7_u5sy4"]
+
 [ext_resource type="PackedScene" uid="uid://c7ci6jopinvro" path="res://assets/forest_kit/Models/GLB format/patch-grass.glb" id="10_ca42v"]
 [ext_resource type="PackedScene" uid="uid://rawye2vhdi67" path="res://assets/forest_kit/Models/GLB format/tree.glb" id="10_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://dy5ssymsaoo5a" path="res://assets/forest_kit/Models/GLB format/tree-high.glb" id="11_264po"]
@@ -16,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://kkipsq2t4ocy" path="res://assets/forest_kit/Models/GLB format/rocks-high.glb" id="13_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://tqwa81hvujpc" path="res://assets/forest_kit/Models/GLB format/rocks-ramp.glb" id="15_1kice"]
 [ext_resource type="PackedScene" uid="uid://cbwcwou7s6nt2" path="res://assets/forest_kit/Models/GLB format/stones.glb" id="16_5newe"]
+
+[ext_resource type="AudioStream" uid="uid://cgvpfgymk82ad" path="res://audio/music.mp3" id="7_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -197,6 +200,7 @@ transform = Transform3D(1, 0, 0, 0, 0.3843015, 0.9232077, 0, -0.9232077, 0.38430
 environment = SubResource("Environment_ca42v")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=313451473]
+collision_layer = 5
 physics_material_override = SubResource("PhysicsMaterial_a08nb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1207242884]
@@ -747,3 +751,9 @@ transform = Transform3D(0.5014445, 0, 0.86519027, 0, 1, 0, -0.86519027, 0, 0.501
 
 [node name="plant4" parent="Environment/Plants" unique_id=732838578 instance=ExtResource("11_rysoc")]
 transform = Transform3D(0.5987443, 0, 0.8009404, 0, 1, 0, -0.8009404, 0, 0.5987443, 6.6839924, 0.08905554, 2.5889983)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1336480892]
+stream = ExtResource("7_vtaks")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true

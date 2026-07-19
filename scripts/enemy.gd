@@ -4,19 +4,23 @@ extends CharacterBody3D
 @export var face_area : Area3D
 @export var model_parent : Node3D
 
+@export var death_sound: AudioStreamMP3 
+
 @export_category("Movement")
 @export var jump_force : float
 @export var climbing_velocity : float
 @export var speed = 5.0
 
 @export_category("Enemy Data")
-@export var health : float
+@export var max_health: float
 @export var damage : int
 @export var money : int
 
 @export_group("Debug")
 @export var climbing : bool
 @export var should_jump : bool
+@export var materials: Array[StandardMaterial3D]
+@export var health: float
 
 func _enter_tree() -> void:
 	Constants.game_manager.enemies.append(self)
@@ -24,10 +28,11 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	face_area.body_entered.connect(on_body_entered)
 	face_area.body_exited.connect(on_body_exited)
+	set_process(false)
 
 #Sets the values from enemies.json
 func set_enemy_data(data : Dictionary) -> void:
-	health = data["health"]
+	max_health = data["health"]
 	damage = data["damage"]
 	speed = data["walk_speed"]
 	climbing_velocity = data["climb_speed"]
@@ -38,8 +43,9 @@ func set_enemy_data(data : Dictionary) -> void:
 	var model_scene = load(data["path"])
 
 	if model_scene and model_parent:
-		var model = model_scene.instantiate()
+		var model = model_scene.instantiate() as Node3D
 		model_parent.add_child(model)
+
 		var animation_player = model.find_child("AnimationPlayer", true, false)
 		if animation_player:
 			for animation_name in animation_player.get_animation_list():
@@ -48,11 +54,30 @@ func set_enemy_data(data : Dictionary) -> void:
 					animation_player.play(animation_name)
 					break
 
+		for node in model.find_children("*", "MeshInstance3D"):
+			var mesh = node as MeshInstance3D
+			var current_material = mesh.get_active_material(0)
+			if current_material:
+				var material_copy = current_material.duplicate()
+				mesh.set_surface_override_material(0, material_copy)
+				materials.append(material_copy)
+	
+	health = max_health
+	set_process(true)
 
 func _process(_delta: float) -> void:
 	if health <= 0:
-		queue_free()
-		print("I AM DEAD")
+		_die()
+		
+func _die() -> void:
+	var audio_player = AudioStreamPlayer3D.new()
+	get_parent().add_child(audio_player)
+	audio_player.stream = death_sound
+	audio_player.play()
+	audio_player.finished.connect(func(): audio_player.queue_free())
+
+	queue_free()
+
 
 func _physics_process(delta: float) -> void:
 	var target := Vector3(0,global_position.y,0)
@@ -107,4 +132,7 @@ func on_body_exited(body: Node3D) -> void:
 
 func do_damage(amount:int) -> void:
 	health -= amount
-	return
+
+	var gb = health / max_health
+	for material in materials:
+		material.albedo_color = Color(1, gb, gb)
