@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://kkipsq2t4ocy" path="res://assets/forest_kit/Models/GLB format/rocks-high.glb" id="13_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://tqwa81hvujpc" path="res://assets/forest_kit/Models/GLB format/rocks-ramp.glb" id="15_1kice"]
 [ext_resource type="PackedScene" uid="uid://cbwcwou7s6nt2" path="res://assets/forest_kit/Models/GLB format/stones.glb" id="16_5newe"]
+[ext_resource type="PackedScene" uid="uid://daxr41b2wnlfg" path="res://scenes/ui.tscn" id="18_ssvqc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -755,3 +756,6 @@ stream = ExtResource("7_vtaks")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
+
+[node name="UI" parent="." unique_id=921849187 node_paths=PackedStringArray("player") instance=ExtResource("18_ssvqc")]
+player = NodePath("../Player")

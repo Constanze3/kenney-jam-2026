@@ -16,6 +16,7 @@ extends Node3D
 
 @export var can_place = false
 @export var lock_placed_object = false
+@export var locked_once = false
 
 func _ready() -> void:
 	turret_spawner = Constants.game_manager.turret_spawner
@@ -46,10 +47,24 @@ func set_enabled(value: bool):
 
 	enabled = value
 		
+var locked_once_timer: Timer = null
 func _physics_process(_delta: float) -> void:
 	if enabled and Input.is_action_pressed("secondary_action"):
 		lock_placed_object = true 
+
+		if not locked_once and not is_instance_valid(locked_once_timer):
+			locked_once_timer = Timer.new()
+			add_child(locked_once_timer)
+
+			locked_once_timer.one_shot = true
+			locked_once_timer.wait_time = 0.5
+			locked_once_timer.timeout.connect(func(): 
+				locked_once = true
+			)
+			locked_once_timer.start()
 	else:
+		if locked_once_timer:
+			locked_once_timer.free()
 		lock_placed_object = false
 	
 	if !lock_placed_object:

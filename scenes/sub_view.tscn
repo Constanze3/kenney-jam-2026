@@ -194,6 +194,7 @@ stretch_shrink = 4
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1409246452]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(288, 162)
 render_target_update_mode = 4
 
@@ -866,6 +867,3 @@ parameters/looping = true
 
 [node name="UI" parent="." unique_id=921849187 node_paths=PackedStringArray("player") instance=ExtResource("1_6g5oa")]
 player = NodePath("../SubViewportContainer/SubViewport/Game/Player")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1245254469]
-current = true

@@ -1,95 +1,85 @@
 [
 	{
-		"duration": 45,
-		"enemy_counts":
-		{
-			"beaver": 15
+		"duration": 45.0,
+		"enemy_counts": {
+			"beaver": 15.0
 		}
 	},
 	{
-		"duration": 50,
-		"enemy_counts":
-		{
-			"beaver": 18,
-			"caterpillar": 4
+		"duration": 50.0,
+		"enemy_counts": {
+			"beaver": 18.0,
+			"caterpillar": 4.0
 		}
 	},
 	{
-		"duration": 60,
-		"enemy_counts":
-		{
-			"beaver": 20,
-			"bunny": 10,
-			"caterpillar": 8
+		"duration": 60.0,
+		"enemy_counts": {
+			"beaver": 20.0,
+			"bunny": 10.0,
+			"caterpillar": 8.0
 		}
 	},
 	{
-		"duration": 65,
-		"enemy_counts":
-		{
-			"beaver": 25,
-			"bee": 10,
-			"bunny": 15
+		"duration": 65.0,
+		"enemy_counts": {
+			"beaver": 25.0,
+			"bee": 10.0,
+			"bunny": 15.0
 		}
 	},
 	{
-		"duration": 75,
-		"enemy_counts":
-		{
-			"bee": 15,
-			"monkey": 12,
-			"fox": 8
+		"duration": 75.0,
+		"enemy_counts": {
+			"bee": 15.0,
+			"monkey": 12.0,
+			"fox": 8.0
 		}
 	},
 	{
-		"duration": 80,
-		"enemy_counts":
-		{
-			"fox": 18,
-			"caterpillar": 20,
-			"monkey": 18,
-			"giraffe": 3
+		"duration": 80.0,
+		"enemy_counts": {
+			"fox": 18.0,
+			"caterpillar": 20.0,
+			"monkey": 18.0,
+			"giraffe": 3.0
 		}
 	},
 	{
-		"duration": 90,
-		"enemy_counts":
-		{
-			"giraffe": 6,
-			"parrot": 15,
-			"fox": 25,
-			"bunny": 20
+		"duration": 90.0,
+		"enemy_counts": {
+			"giraffe": 6.0,
+			"parrot": 15.0,
+			"fox": 25.0,
+			"bunny": 20.0
 		}
 	},
 	{
-		"duration": 90,
-		"enemy_counts":
-		{
-			"elephant": 5,
-			"tiger": 10,
-			"parrot": 25,
-			"monkey": 25
+		"duration": 90.0,
+		"enemy_counts": {
+			"elephant": 5.0,
+			"tiger": 10.0,
+			"parrot": 25.0,
+			"monkey": 25.0
 		}
 	},
 	{
-		"duration": 110,
-		"enemy_counts":
-		{
-			"elephant": 8,
-			"polar": 4,
-			"tiger": 18,
-			"bee": 30
+		"duration": 110.0,
+		"enemy_counts": {
+			"elephant": 8.0,
+			"polar": 4.0,
+			"tiger": 18.0,
+			"bee": 30.0
 		}
 	},
 	{
-		"duration": 130,
-		"enemy_counts":
-		{
-			"polar": 10,
-			"elephant": 12,
-			"tiger": 25,
-			"parrot": 30,
-			"lion": 1
+		"duration": 130.0,
+		"enemy_counts": {
+			"polar": 10.0,
+			"elephant": 12.0,
+			"tiger": 25.0,
+			"parrot": 30.0,
+			"lion": 1.0
 		}
 	}
 ]

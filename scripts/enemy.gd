@@ -72,6 +72,7 @@ func _process(_delta: float) -> void:
 func _die() -> void:
 	var audio_player = AudioStreamPlayer3D.new()
 	get_parent().add_child(audio_player)
+	audio_player.bus = "Sounds"
 	audio_player.stream = death_sound
 	audio_player.play()
 	audio_player.finished.connect(func(): audio_player.queue_free())

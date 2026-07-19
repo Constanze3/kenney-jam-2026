@@ -50,9 +50,23 @@ subpixel_positioning = 0
 [sub_resource type="LabelSettings" id="LabelSettings_pq12f"]
 font = ExtResource("4_vsj0x")
 
+[sub_resource type="LabelSettings" id="LabelSettings_qsv74"]
+font = ExtResource("4_vsj0x")
+font_size = 40
+font_color = Color(0.9411765, 0.49019608, 0.75686276, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1mc3"]
+font = ExtResource("4_vsj0x")
+font_size = 26
+font_color = Color(0.65208, 0.6252223, 0.9274234, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Theme" id="Theme_vdcm2"]
 
-[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "background_bar", "cake_left_label", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
+[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "background_bar", "cake_left_label", "pause_hint", "lock_hint", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +80,9 @@ hotbar = NodePath("Hotbar")
 desc_bar = NodePath("Hotbar/Description")
 background_bar = NodePath("Hotbar/BackgroundHotBar")
 cake_left_label = NodePath("CakeLeftLabel")
-continue_game_button = NodePath("CanvasLayer/Menu/Button")
+pause_hint = NodePath("PauseHintLabel")
+lock_hint = NodePath("LockHintLabel")
+continue_game_button = NodePath("CanvasLayer/Menu/Continue")
 pause_menu_layer = NodePath("CanvasLayer")
 sensitivity_slider = NodePath("CanvasLayer/Menu/SensSlider")
 quit_game_button = NodePath("CanvasLayer/Menu/Button2")
@@ -99,26 +115,27 @@ offset_right = 60.080894
 offset_bottom = 60.063416
 texture = ExtResource("3_6rmj2")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="MoneyLabel" type="Label" parent="." unique_id=713856705]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 1.0582383
 anchor_bottom = 0.5
 offset_left = -1081.9055
-offset_top = -307.0135
-offset_right = -935.70856
-offset_bottom = -268.0135
+offset_top = -311.0135
+offset_right = -1014.8152
+offset_bottom = -264.0135
 grow_horizontal = 0
 grow_vertical = 2
 rotation = 0.0002774724
 theme_override_constants/outline_size = 0
 text = "asd"
 label_settings = SubResource("LabelSettings_7ktgp")
-autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Hotbar" type="ItemList" parent="." unique_id=863928529]
 clip_contents = false
@@ -156,7 +173,7 @@ item_6/icon = SubResource("CompressedTexture2D_cof4p")
 z_index = -1
 layout_mode = 1
 offset_left = 0.46950468
-offset_right = 178.46959
+offset_right = 228.4695
 offset_bottom = 42.0
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("4_vsj0x")
@@ -289,39 +306,74 @@ anchor_right = 0.5
 offset_left = -209.0
 offset_top = 143.0
 offset_right = 210.0
-offset_bottom = 562.0
+offset_bottom = 495.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 0.3529412)
 
-[node name="Button" type="Button" parent="CanvasLayer/Menu" unique_id=1121224987]
+[node name="Title" type="Label" parent="CanvasLayer/Menu" unique_id=912853261]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -44.5
-offset_top = 38.0
-offset_right = 45.5
-offset_bottom = 69.0
+offset_left = -142.5
+offset_top = 28.0
+offset_right = 142.5
+offset_bottom = 68.0
 grow_horizontal = 2
+text = "WILDLIFE WIPEOUT"
+label_settings = SubResource("LabelSettings_qsv74")
+
+[node name="Description" type="Label" parent="CanvasLayer/Menu" unique_id=1627113617]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.88666
+offset_top = 70.0
+offset_right = 88.88666
+offset_bottom = 108.70166
+grow_horizontal = 2
+text = "Protect the cake!"
+label_settings = SubResource("LabelSettings_h1mc3")
+
+[node name="Continue" type="Button" parent="CanvasLayer/Menu" unique_id=1121224987]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -47.5
+offset_right = 68.0
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.0494885, 0.96245956)
-theme = SubResource("Theme_vdcm2")
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_vsj0x")
+theme_override_font_sizes/font_size = 22
 text = "Continue"
-metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="CanvasLayer/Menu" unique_id=1421442709]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -44.5
-offset_top = 82.0
-offset_right = 45.5
-offset_bottom = 113.0
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = 3.4999847
+offset_right = 67.0
+offset_bottom = 44.499985
 grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.0494885, 0.96245956)
 theme = SubResource("Theme_vdcm2")
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_vsj0x")
+theme_override_font_sizes/font_size = 22
 text = "Quit Game"
-metadata/_edit_use_anchors_ = true
 
 [node name="SensSlider" type="HSlider" parent="CanvasLayer/Menu" unique_id=1830732518]
 layout_mode = 1
@@ -331,9 +383,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -104.5
-offset_top = 24.5
+offset_top = 106.5
 offset_right = 103.5
-offset_bottom = 56.5
+offset_bottom = 138.5
 grow_horizontal = 2
 grow_vertical = 2
 min_value = 0.001
@@ -352,5 +404,44 @@ offset_left = -34.5
 offset_right = 34.5
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_vsj0x")
+theme_override_font_sizes/font_size = 22
 text = "Sensivity"
-metadata/_edit_use_anchors_ = true
+
+[node name="LockHintLabel" type="Label" parent="." unique_id=1548599319]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -273.36835
+offset_top = -141.0
+offset_right = 273.36835
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_vsj0x")
+theme_override_font_sizes/font_size = 22
+text = "Hold right mouse button to lock turret placement while you move"
+
+[node name="PauseHintLabel" type="Label" parent="." unique_id=1040221749]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.31598
+offset_top = -142.0
+offset_right = 74.68408
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_vsj0x")
+theme_override_font_sizes/font_size = 22
+text = "Press P to pause"

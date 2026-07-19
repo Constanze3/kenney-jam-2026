@@ -11,6 +11,12 @@ signal set_enabled(setting: bool)
 
 @export var cake_left_label: Label
 
+@export var pause_hint: Label
+@export var lock_hint: Label
+
+var started: bool = false
+var paused_once: bool
+
 @export_category("Pause Menu")
 @export var continue_game_button : Button
 @export var pause_menu_layer : CanvasLayer
@@ -30,6 +36,15 @@ var build_mode: BuildMode
 var desc_tween: Tween
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		if game_paused:
+			continue_game()
+		else:
+			paused_once = true
+			update_hint()
+			pause_game()
+
+	var player = Constants.game_manager.player
 	var sensitivity = player.get_sensitivity()
 	
 	if event is InputEventMouseMotion and not game_paused:
@@ -52,6 +67,10 @@ func _ready() -> void:
 	sens_label.text = "Sensitivity: " + str(player.sensitivity)
 
 	build_mode = Constants.game_manager.player.build_mode
+
+	update_hint()
+	update_cake_left()
+	pause_game()
 
 	#Set up the hotbar prices when the game is getting started.
 	for i in 7:
@@ -82,7 +101,6 @@ func pause_game() -> void:
 	set_enabled.emit(false)
 	get_tree().paused = true
 	pause_menu_layer.visible = true
-	return
 
 func continue_game() -> void:
 	game_paused = false
@@ -90,18 +108,16 @@ func continue_game() -> void:
 	get_tree().paused = false
 	pause_menu_layer.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	return
+	started = true
 
 func quit_game() -> void:
 	get_tree().quit()
 
-func _process(_delta: float) -> void:	
+func _process(_delta: float) -> void:		
 	if game_paused:
 		return
-		
-	if Input.is_action_just_pressed("escape") and not game_paused:
-		pause_game()
 	
+	update_hint()
 	update_cake_left()
 
 	var current_money: int = Constants.game_manager.bank
@@ -141,8 +157,8 @@ func show_money_popup(amount: int) -> void:
 
 	# Spawn it beside the money counter.
 	popup.global_position = Vector2(
-		money_label.global_position.x + money_label.size.x + 10.0,
-		money_label.global_position.y
+		money_label.global_position.x + money_label.get_minimum_size().x + 10.0,
+		money_label.global_position.y + 20.0
 	)
 
 	popup.show_value(
@@ -199,3 +215,21 @@ func animate_description_bar() -> void:
 		target_position,
 		0.2
 	)
+
+func update_hint() -> void:
+	hide_hint()
+
+	if not started:
+		return
+
+	var build_mode = Constants.game_manager.player.build_mode
+	if build_mode.enabled and not build_mode.locked_once:
+		lock_hint.show()
+		return
+
+	if not paused_once:
+		pause_hint.show()
+
+func hide_hint() -> void:
+	pause_hint.hide()
+	lock_hint.hide()
