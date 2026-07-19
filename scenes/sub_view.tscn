@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://tqwa81hvujpc" path="res://assets/forest_kit/Models/GLB format/rocks-ramp.glb" id="14_kc1s7"]
 [ext_resource type="PackedScene" uid="uid://cbwcwou7s6nt2" path="res://assets/forest_kit/Models/GLB format/stones.glb" id="15_1ghj8"]
 [ext_resource type="PackedScene" uid="uid://ceqccylidcuq5" path="res://assets/forest_kit/Models/GLB format/plant.glb" id="16_b1yv6"]
+[ext_resource type="AudioStream" uid="uid://cgvpfgymk82ad" path="res://audio/music.mp3" id="17_04eeb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 
@@ -215,6 +216,7 @@ transform = Transform3D(1, 0, 0, 0, 0.3843015, 0.9232077, 0, -0.9232077, 0.38430
 environment = SubResource("Environment_a08nb")
 
 [node name="Ground" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game" unique_id=313451473]
+collision_layer = 5
 physics_material_override = SubResource("PhysicsMaterial_a08nb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Game/Ground" unique_id=1207242884]
@@ -766,5 +768,14 @@ transform = Transform3D(0.5014445, 0, 0.86519027, 0, 1, 0, -0.86519027, 0, 0.501
 [node name="plant4" parent="SubViewportContainer/SubViewport/Game/Environment/Plants" unique_id=732838578 instance=ExtResource("16_b1yv6")]
 transform = Transform3D(0.5987443, 0, 0.8009404, 0, 1, 0, -0.8009404, 0, 0.5987443, 6.6839924, 0.08905554, 2.5889983)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/Game" unique_id=1450971566]
+stream = ExtResource("17_04eeb")
+volume_db = -5.0
+autoplay = true
+parameters/looping = true
+
 [node name="UI" parent="." unique_id=921849187 node_paths=PackedStringArray("player") instance=ExtResource("1_6g5oa")]
 player = NodePath("../SubViewportContainer/SubViewport/Game/Player")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1245254469]
+current = true

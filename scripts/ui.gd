@@ -8,6 +8,9 @@ signal set_enabled(setting: bool)
 @export var desc_bar : ItemList
 @export var background_bar : ItemList
 @export var slide_speed : float = 10.0
+
+@export var cake_left_label: Label
+
 @export_category("Pause Menu")
 @export var continue_game_button : Button
 @export var pause_menu_layer : CanvasLayer
@@ -100,6 +103,8 @@ func _process(_delta: float) -> void:
 	if game_paused:
 		return
 
+	update_cake_left()
+
 	var current_money: int = Constants.game_manager.bank
 
 	if current_money != previous_money:
@@ -147,6 +152,11 @@ func show_money_popup(amount: int) -> void:
 		popup_duration,
 		popup_spread
 	)
+
+func update_cake_left():
+	var game_manager = Constants.game_manager
+	var health_left = int(round(game_manager.tower_health / game_manager.max_tower_health * 100))
+	cake_left_label.text = "Cake left: %s%%" % health_left
 
 func select_slot(index: int) -> void:
 	if selected == index:

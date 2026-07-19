@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c04ejqw8meqcd" path="res://scenes/food.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://qskg7gstqdth" path="res://scripts/turret/turret_spawner.gd" id="7_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dmu7y86vgqks2" path="res://scenes/turret.tscn" id="7_u5sy4"]
-
+[ext_resource type="AudioStream" uid="uid://cgvpfgymk82ad" path="res://audio/music.mp3" id="7_vtaks"]
 [ext_resource type="PackedScene" uid="uid://c7ci6jopinvro" path="res://assets/forest_kit/Models/GLB format/patch-grass.glb" id="10_ca42v"]
 [ext_resource type="PackedScene" uid="uid://rawye2vhdi67" path="res://assets/forest_kit/Models/GLB format/tree.glb" id="10_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://dy5ssymsaoo5a" path="res://assets/forest_kit/Models/GLB format/tree-high.glb" id="11_264po"]
@@ -17,8 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://kkipsq2t4ocy" path="res://assets/forest_kit/Models/GLB format/rocks-high.glb" id="13_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://tqwa81hvujpc" path="res://assets/forest_kit/Models/GLB format/rocks-ramp.glb" id="15_1kice"]
 [ext_resource type="PackedScene" uid="uid://cbwcwou7s6nt2" path="res://assets/forest_kit/Models/GLB format/stones.glb" id="16_5newe"]
-
-[ext_resource type="AudioStream" uid="uid://cgvpfgymk82ad" path="res://audio/music.mp3" id="7_vtaks"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qlnur"]
 

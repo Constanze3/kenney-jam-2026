@@ -176,7 +176,7 @@ func begin_shot():
 
 	var shot_audio_player = AudioStreamPlayer3D.new()
 	add_child(shot_audio_player)
-	shot_audio_player.bus = "Turrets"
+	# shot_audio_player.bus = "Turrets"
 	shot_audio_player.stream = shot_sound
 	shot_audio_player.pitch_scale = randf_range(min_shot_sound_pitch, max_shot_sound_pitch)
 	shot_audio_player.play()
