@@ -122,12 +122,12 @@ func _exit_tree() -> void:
 func on_body_entered(body: Node3D) -> void:
 	if body is Enemy and body.name != name:
 		should_jump = true
-	if body == Constants.game_manager.tower:
+	if body.name.contains("Tower"):
 		climbing = true	
 		return
 
 func on_body_exited(body: Node3D) -> void:
-	if body == Constants.game_manager.tower:
+	if body.name.contains("Tower"):
 		climbing = false
 	return
 

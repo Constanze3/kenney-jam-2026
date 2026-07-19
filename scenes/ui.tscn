@@ -469,14 +469,20 @@ metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" type="Control" parent="." unique_id=1937032021]
 z_index = 10
-anchors_preset = 0
-offset_right = 1159.5624
-offset_bottom = 642.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="GameOver" unique_id=1516083273]
-layout_mode = 0
-offset_right = 1154.5557
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vt8ps")
 
 [node name="CakeEaten" type="Label" parent="GameOver" unique_id=2146334364]
