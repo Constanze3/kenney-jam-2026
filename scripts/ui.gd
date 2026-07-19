@@ -30,7 +30,6 @@ var build_mode: BuildMode
 var desc_tween: Tween
 
 func _input(event: InputEvent) -> void:
-	var player = Constants.game_manager.player
 	var sensitivity = player.get_sensitivity()
 	
 	if event is InputEventMouseMotion and not game_paused:
@@ -169,7 +168,7 @@ func select_slot(index: int) -> void:
 	if selected != -1:
 		var d = turret_data.data[selected]
 				
-		desc_bar.set_item_text(0, str(d["damage"]))
+		desc_bar.set_item_text(0, str(d["damage"]) + "\n")
 		desc_bar.set_item_text(1, str(snapped(1 / d["seconds_between_shots"] / 1, 0.1)))
 		desc_bar.set_item_text(2, str(d["max_range"]))
 		desc_bar.set_item_text(3, str((1 - d["inaccuracy"]) * 100))

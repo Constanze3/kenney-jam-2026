@@ -47,6 +47,9 @@ load_path = "res://.godot/imported/q.png-d1756d6b5f1f4925c7dab03724a67794.ctex"
 font_italic = true
 subpixel_positioning = 0
 
+[sub_resource type="LabelSettings" id="LabelSettings_pq12f"]
+font = ExtResource("4_vsj0x")
+
 [sub_resource type="Theme" id="Theme_vdcm2"]
 
 [node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "background_bar", "cake_left_label", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
@@ -111,6 +114,7 @@ offset_right = -935.70856
 offset_bottom = -268.0135
 grow_horizontal = 0
 grow_vertical = 2
+rotation = 0.0002774724
 theme_override_constants/outline_size = 0
 text = "asd"
 label_settings = SubResource("LabelSettings_7ktgp")
@@ -125,7 +129,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -228.0
-offset_top = -111.0
+offset_top = -110.0
 offset_right = 228.0
 offset_bottom = -10.0
 grow_horizontal = 2
@@ -133,13 +137,13 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("4_vsj0x")
 theme_override_font_sizes/font_size = 24
+max_text_lines = 2
 auto_width = true
 auto_height = true
 item_count = 7
 max_columns = 7
 icon_mode = 0
 fixed_icon_size = Vector2i(60, 60)
-item_0/text = " "
 item_0/icon = SubResource("CompressedTexture2D_7dvkv")
 item_1/icon = SubResource("CompressedTexture2D_vdcm2")
 item_2/icon = SubResource("CompressedTexture2D_6rmj2")
@@ -149,7 +153,7 @@ item_5/icon = SubResource("CompressedTexture2D_h1mc3")
 item_6/icon = SubResource("CompressedTexture2D_cof4p")
 
 [node name="Description" type="ItemList" parent="Hotbar" unique_id=1927184316]
-z_index = -3
+z_index = -1
 layout_mode = 1
 offset_left = 0.46950468
 offset_right = 178.46959
@@ -174,17 +178,13 @@ item_4/icon = ExtResource("7_qsv74")
 [node name="BackgroundHotBar" type="ItemList" parent="Hotbar" unique_id=2020233917]
 z_index = -1
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -228.0
-offset_top = -98.70996
-offset_right = 228.0
-offset_bottom = 2.290039
+offset_left = 0.46950468
+offset_right = 0.46951294
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 size_flags_vertical = 8
 theme_override_fonts/font = SubResource("SystemFont_cgfq5")
 auto_width = true
@@ -200,6 +200,76 @@ item_3/icon = ExtResource("3_8dubc")
 item_4/icon = ExtResource("4_p7vwb")
 item_5/icon = ExtResource("4_p7vwb")
 item_6/icon = ExtResource("5_ktti3")
+
+[node name="Label1" type="Label" parent="Hotbar" unique_id=591763690]
+z_index = 3
+layout_mode = 0
+offset_left = 10.482996
+offset_top = 5.0
+offset_right = 15.489739
+offset_bottom = 21.0
+text = "1"
+label_settings = SubResource("LabelSettings_pq12f")
+
+[node name="Label2" type="Label" parent="Hotbar" unique_id=1090624164]
+z_index = 3
+layout_mode = 0
+offset_left = 73.56799
+offset_top = 5.0
+offset_right = 78.57474
+offset_bottom = 21.0
+text = "2"
+label_settings = SubResource("LabelSettings_pq12f")
+
+[node name="Label3" type="Label" parent="Hotbar" unique_id=270962387]
+z_index = 3
+layout_mode = 0
+offset_left = 137.65434
+offset_top = 5.0
+offset_right = 144.65434
+offset_bottom = 21.0
+text = "3"
+label_settings = SubResource("LabelSettings_pq12f")
+
+[node name="Label4" type="Label" parent="Hotbar" unique_id=1111855128]
+z_index = 3
+layout_mode = 0
+offset_left = 202.74203
+offset_top = 5.0
+offset_right = 209.74203
+offset_bottom = 21.0
+text = "4"
+label_settings = SubResource("LabelSettings_pq12f")
+
+[node name="Label5" type="Label" parent="Hotbar" unique_id=1976441593]
+z_index = 3
+layout_mode = 0
+offset_left = 266.82837
+offset_top = 5.0
+offset_right = 273.82837
+offset_bottom = 21.0
+text = "5"
+label_settings = SubResource("LabelSettings_pq12f")
+
+[node name="Label6" type="Label" parent="Hotbar" unique_id=683805929]
+z_index = 3
+layout_mode = 0
+offset_left = 329.91336
+offset_top = 5.0
+offset_right = 336.91336
+offset_bottom = 21.0
+text = "6"
+label_settings = SubResource("LabelSettings_pq12f")
+
+[node name="Label7" type="Label" parent="Hotbar" unique_id=1459394346]
+z_index = 3
+layout_mode = 0
+offset_left = 393.99973
+offset_top = 5.0
+offset_right = 400.99973
+offset_bottom = 21.0
+text = "7"
+label_settings = SubResource("LabelSettings_pq12f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1929879615]
 visible = false
