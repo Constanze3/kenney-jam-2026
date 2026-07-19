@@ -44,7 +44,7 @@ func spawn_turret_build_shadow(turret_data: Dictionary) -> BuildShadow:
 	var meshes: Array[MeshInstance3D] = []
 	for node in new_turret.find_children("*", "MeshInstance3D", true, false) as Array[MeshInstance3D]:
 		meshes.append(node as MeshInstance3D)
-
+	print(turret_data["max_range"])
 	build_shadow.setup(meshes, turret_data["max_range"])
 	
 	# Remove turret script

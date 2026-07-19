@@ -3,60 +3,92 @@
 		"duration": 45,
 		"enemy_counts":
 		{
-			"beaver": 8,
-			"lion" : 20
+			"beaver": 15
 		}
 	},
-
 	{
-		"duration": 55,
+		"duration": 50,
 		"enemy_counts":
 		{
-			"beaver": 15,
-			"bunny": 6
+			"beaver": 18,
+			"caterpillar": 4
 		}
 	},
-
+	{
+		"duration": 60,
+		"enemy_counts":
+		{
+			"beaver": 20,
+			"bunny": 10,
+			"caterpillar": 8
+		}
+	},
 	{
 		"duration": 65,
 		"enemy_counts":
 		{
-			"beaver": 18,
-			"bunny": 10,
-			"bee": 6
+			"beaver": 25,
+			"bee": 10,
+			"bunny": 15
 		}
 	},
-
 	{
 		"duration": 75,
 		"enemy_counts":
 		{
-			"beaver": 15,
-			"bunny": 12,
-			"bee": 10,
-			"fox": 4
+			"bee": 15,
+			"monkey": 12,
+			"fox": 8
 		}
 	},
-
+	{
+		"duration": 80,
+		"enemy_counts":
+		{
+			"fox": 18,
+			"caterpillar": 20,
+			"monkey": 18,
+			"giraffe": 3
+		}
+	},
 	{
 		"duration": 90,
 		"enemy_counts":
 		{
-			"beaver": 18,
-			"bee": 10,
-			"fox": 6,
-			"elephant": 3
+			"giraffe": 6,
+			"parrot": 15,
+			"fox": 25,
+			"bunny": 20
 		}
 	},
-
 	{
-		"duration": 120,
+		"duration": 90,
 		"enemy_counts":
 		{
-			"beaver": 20,
-			"bee": 10,
-			"fox": 8,
-			"elephant": 4,
+			"elephant": 5,
+			"tiger": 10,
+			"parrot": 25,
+			"monkey": 25
+		}
+	},
+	{
+		"duration": 110,
+		"enemy_counts":
+		{
+			"elephant": 8,
+			"polar": 4,
+			"tiger": 18,
+			"bee": 30
+		}
+	},
+	{
+		"duration": 130,
+		"enemy_counts":
+		{
+			"polar": 10,
+			"elephant": 12,
+			"tiger": 25,
+			"parrot": 30,
 			"lion": 1
 		}
 	}
