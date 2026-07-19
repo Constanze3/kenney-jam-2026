@@ -84,7 +84,7 @@ func evaluate_can_place(raycast_result: Dictionary) -> bool:
 	if raycast_result.is_empty():
 		return false
 
-	if raycast_result["normal"] != Vector3.UP:
+	if Vector3.UP.dot(raycast_result["normal"]) < 0.7:
 		return false
 
 	var collider: CollisionObject3D = raycast_result["collider"]

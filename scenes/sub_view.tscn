@@ -815,7 +815,7 @@ shape = SubResource("BoxShape3D_iup8r")
 debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="bridge1" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=1954908492]
-collision_layer = 16
+collision_layer = 20
 
 [node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge1" unique_id=1402314837 instance=ExtResource("10_6g5oa")]
 transform = Transform3D(-6.991421e-07, -8.528779e-08, -3.7354743, -6.7892647, 4.5966387, 0, 15.994508, 1.9511571, -1.6328275e-07, 0, 16.493689, 21.288712)
@@ -826,7 +826,7 @@ shape = SubResource("BoxShape3D_pq12f")
 
 [node name="bridge2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=119608485]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-collision_layer = 16
+collision_layer = 20
 
 [node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge2" unique_id=1324771664 instance=ExtResource("10_6g5oa")]
 transform = Transform3D(-6.991421e-07, -8.528779e-08, -3.779907, -6.7892647, 4.5966387, 0, 15.994508, 1.9511571, -1.6522496e-07, 0, 16.493689, 21.288712)
@@ -837,7 +837,7 @@ shape = SubResource("BoxShape3D_pq12f")
 
 [node name="bridge4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=1956173341]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
-collision_layer = 16
+collision_layer = 20
 
 [node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge4" unique_id=423757539 instance=ExtResource("10_6g5oa")]
 transform = Transform3D(17.317282, -1.1459172, 0.97584295, 10.739709, 2.4653764, -2.9802322e-08, -10.012133, 0.66252136, 1.6878479, 19.750694, 16.440317, 4.7647815)
@@ -849,7 +849,7 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="bridge3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/Node3D" unique_id=1051354434]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-collision_layer = 16
+collision_layer = 20
 
 [node name="bridge-draw2" parent="SubViewportContainer/SubViewport/Game/Node3D/bridge3" unique_id=934598791 instance=ExtResource("10_6g5oa")]
 transform = Transform3D(17.317282, -1.1459172, 0.97584295, 10.739709, 2.4653764, -2.9802322e-08, -10.012133, 0.66252136, 1.6878479, 19.750694, 16.440317, 4.7647815)
