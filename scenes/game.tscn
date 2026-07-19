@@ -22,10 +22,12 @@
 [sub_resource type="Sky" id="Sky_pq12f"]
 sky_material = SubResource("ProceduralSkyMaterial_qlnur")
 
-[sub_resource type="Environment" id="Environment_a08nb"]
+[sub_resource type="Environment" id="Environment_ca42v"]
 background_mode = 2
 sky = SubResource("Sky_pq12f")
-fog_density = 0.0168
+fog_enabled = true
+fog_mode = 1
+fog_density = 0.461
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a08nb"]
 
@@ -192,7 +194,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0830936, 26.331724, -0.040
 transform = Transform3D(1, 0, 0, 0, 0.3843015, 0.9232077, 0, -0.9232077, 0.3843015, 0, 0.6362133, -20.306286)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1738708487]
-environment = SubResource("Environment_a08nb")
+environment = SubResource("Environment_ca42v")
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=313451473]
 physics_material_override = SubResource("PhysicsMaterial_a08nb")
