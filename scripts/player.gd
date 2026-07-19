@@ -22,17 +22,8 @@ var lock_movement: bool = false
 func get_sensitivity() -> float:
 	return sensitivity * sensitivity_multiplier
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		yaw -= event.screen_relative.x * get_sensitivity() 
-		pitch -= event.screen_relative.y * get_sensitivity() 
-		pitch = clamp(pitch, -PI / 2, PI / 2)
-
-	if event.is_action_pressed("escape"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-	if event is InputEventMouseButton and event.is_pressed():
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("escape"):
 
 func set_enabled(setting: bool) -> void:
 	enabled = setting

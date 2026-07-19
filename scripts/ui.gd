@@ -26,6 +26,18 @@ var game_paused = false
 var build_mode: BuildMode
 var desc_tween: Tween
 
+func _input(event: InputEvent) -> void:
+	var player = Constants.game_manager.player
+	var sensitivity = player.get_sensitivity()
+	
+	if event is InputEventMouseMotion and not game_paused:
+		player.yaw -= event.screen_relative.x * sensitivity
+		player.pitch -= event.screen_relative.y * sensitivity
+		player.pitch = clamp(player.pitch, -PI / 2, PI / 2)
+
+	if event is InputEventMouseButton and event.is_pressed():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_enabled.connect(player.set_enabled)
@@ -45,7 +57,6 @@ func _ready() -> void:
 	update_hotbar_colors()
 		
 	var stat_colors: Array[Color] = [
-
 		Color.RED,
 		Color.ORANGE,
 		Color.GREEN,
@@ -64,6 +75,7 @@ func change_sensitivity(value: float) -> void:
 	sens_label.text = "Sensitivity: " + str(value)
 
 func pause_game() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	game_paused = true
 	set_enabled.emit(false)
 	get_tree().paused = true

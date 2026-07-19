@@ -25,6 +25,10 @@ extends Node3D
 
 @export var target: Enemy 
 
+## Used calculating shot_deadline based on bullet_speed
+@export var max_shot_duraton: float = 0.15
+@export var shot_deadline: float
+
 @export var shot_point: Node3D
 @export var timer: Timer
 
@@ -33,12 +37,12 @@ extends Node3D
 
 @export var currently_shooting: bool = false
 
-var bullet_speed_multiplier = 25.0
-
 func _ready() -> void:
+	shot_deadline = max_shot_duraton / bullet_speed
+
 	timer = Timer.new()
 	timer.autostart = true
-	timer.wait_time = seconds_between_shots
+	timer.wait_time = seconds_between_shots + shot_deadline
 	timer.timeout.connect(shoot)
 	add_child(timer)
 	
@@ -176,7 +180,6 @@ func begin_shot():
 	shot_audio_player.finished.connect(func(): shot_audio_player.queue_free())
 
 	var current_shot = {
-		"distance": shot_point.global_position.distance_to(end_position),
 		"initial_position": shot_point.global_position,
 		"end_position": end_position,
 		"bullet": bullet,
@@ -187,8 +190,6 @@ func begin_shot():
 
 func perform_shot(current_shot: Dictionary) -> void:
 	var bullet: Node3D = current_shot["bullet"]
-	
-	var shot_deadline = current_shot["distance"] / (bullet_speed * bullet_speed_multiplier)
 	
 	var seconds_since_current_shot: float = 0
 	var delta: float = 0
