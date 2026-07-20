@@ -20,7 +20,9 @@ signal set_enabled(setting: bool)
 @export var cake_eaten_label: Label
 @export var cake_protected_label: Label
 @export var death_label: Label
-
+@export var restart_button_on_ground : Button
+@export var restart_button_on_cake_eaten : Button
+@export var restart_button_on_cake_protected : Button
 var started: bool = false
 var paused_once: bool
 
@@ -69,6 +71,10 @@ func _ready() -> void:
 	continue_game_button.button_down.connect(continue_game)
 	quit_game_button.button_down.connect(quit_game)
 	
+	restart_button_on_ground.button_down.connect(restart_game)
+	restart_button_on_cake_eaten.button_down.connect(restart_game)
+	restart_button_on_cake_protected.button_down.connect(restart_game)
+	
 	sensitivity_slider.value = player.sensitivity
 	sensitivity_slider.value_changed.connect(change_sensitivity)
 	sens_label.text = "Sensitivity: " + str(player.sensitivity)
@@ -104,6 +110,9 @@ func _ready() -> void:
 	previous_money = Constants.game_manager.bank
 	money_label.text = str(previous_money)
 
+func restart_game()-> void:
+	get_tree().reload_current_scene()
+	
 func change_sensitivity(value: float) -> void:
 	player.sensitivity = value
 	sens_label.text = "Sensitivity: " + str(value)

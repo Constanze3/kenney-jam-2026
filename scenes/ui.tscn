@@ -69,7 +69,7 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt8ps"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "background_bar", "cake_left_label", "pause_hint", "lock_hint", "wave_indicator_label", "end_game_panel", "cake_eaten_label", "cake_protected_label", "death_label", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
+[node name="UI" type="Control" unique_id=921849187 node_paths=PackedStringArray("hotbar", "desc_bar", "background_bar", "cake_left_label", "pause_hint", "lock_hint", "wave_indicator_label", "end_game_panel", "cake_eaten_label", "cake_protected_label", "death_label", "restart_button_on_ground", "restart_button_on_cake_eaten", "restart_button_on_cake_protected", "continue_game_button", "pause_menu_layer", "sensitivity_slider", "quit_game_button", "sens_label", "money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,6 +90,9 @@ end_game_panel = NodePath("GameOver/Panel")
 cake_eaten_label = NodePath("GameOver/CakeEaten")
 cake_protected_label = NodePath("GameOver/CakeProtected")
 death_label = NodePath("GameOver/GroundDeathLabel")
+restart_button_on_ground = NodePath("GameOver/GroundDeathLabel/Button")
+restart_button_on_cake_eaten = NodePath("GameOver/CakeEaten/Button")
+restart_button_on_cake_protected = NodePath("GameOver/CakeProtected/Button")
 continue_game_button = NodePath("Game/CanvasLayer/Menu/Continue")
 pause_menu_layer = NodePath("Game/CanvasLayer")
 sensitivity_slider = NodePath("Game/CanvasLayer/Menu/SensSlider")
@@ -506,6 +509,21 @@ text = "The cake is gone ):
 "
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="GameOver/CakeEaten" unique_id=12743614]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.267395
+offset_top = 12.5
+offset_right = 32.732605
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"
+
 [node name="CakeEaten" type="Label" parent="GameOver/CakeEaten" unique_id=1776200146]
 layout_mode = 1
 anchors_preset = 8
@@ -567,6 +585,21 @@ text = "
 BUT THE FOREST WILL REMEMBER WHAT YOU DID"
 horizontal_alignment = 1
 
+[node name="Button" type="Button" parent="GameOver/CakeProtected" unique_id=629750953]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.267395
+offset_top = 12.5
+offset_right = 32.732605
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"
+
 [node name="GroundDeathLabel" type="Label" parent="GameOver" unique_id=1765159762]
 layout_mode = 1
 anchors_preset = 8
@@ -587,3 +620,18 @@ theme_override_font_sizes/font_size = 46
 text = "You touched the ground: BIG MISTAKE
 you died"
 horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameOver/GroundDeathLabel" unique_id=141623040]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.267395
+offset_top = 12.5
+offset_right = 32.732605
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"
