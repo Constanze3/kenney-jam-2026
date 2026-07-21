@@ -200,7 +200,7 @@ size = Vector3(6.269287, 0.477417, 6.35553)
 size = Vector3(6.269287, 0.477417, 6.35553)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1ghj8"]
-size = Vector3(3.1894531, 1.128891, 20.761185)
+size = Vector3(3.1894531, 0.7868614, 20.761185)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3f7iu"]
 size = Vector3(3.1894531, 1.128891, 20.761185)
@@ -1063,7 +1063,7 @@ collision_layer = 20
 transform = Transform3D(-8.14063e-07, -1.13437736e-07, -3.779907, -7.2557, 5.038932, -2.472213e-08, 19.783106, 1.8480916, -1.6460797e-07, 2.5379825e-07, 15.928974, 24.191824)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers/bridge1" unique_id=1061500652]
-transform = Transform3D(1, -4.0538133e-09, 1.6188935e-09, 4.3637565e-09, 0.9376534, -0.3475717, -1.08968834e-10, 0.3475717, 0.9376534, 1.9249455e-09, 19.300743, 14.891247)
+transform = Transform3D(1, -4.0538133e-09, 1.6188935e-09, 4.3637565e-09, 0.9376534, -0.3475717, -1.08968834e-10, 0.3475717, 0.9376534, 2.6182074e-09, 19.14039, 14.831807)
 shape = SubResource("BoxShape3D_1ghj8")
 
 [node name="bridge2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/Game/MiniTowers" unique_id=119608485]
